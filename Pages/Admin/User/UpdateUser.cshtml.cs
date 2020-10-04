@@ -5,12 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Bakery.Pages.Admin
-{
-    public class UpdateUserModel : PageModel
-    {
-        public void OnGet()
-        {
-        }
+namespace Bloggie.Pages.Admin {
+  public class UpdateUserModel : PageModel {
+    public void OnGet() {
     }
+  }
 }
