@@ -1,0 +1,44 @@
+.wrapper {
+  display: flex;
+  width: 100%;
+  align-items: stretch;
+}
+
+#sidebar {
+  width: 150px;
+  min-height: 100%;
+}
+
+#content {
+  padding-left: 20px;
+}
+
+/* Sidebar item */
+a[data-toggle="collapse"] {
+  position: relative;
+  display: block;
+}
+
+/* Sidebar item dropdown arrow */
+.dropdown-toggle::after {
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: 0;
+  transform: translateY(-50%);
+}
+
+/* Submenu container */
+#sidebar .collapse {
+  transition: 0.2s ease-in-out;
+}
+
+/* Submenu items */
+#sidebar .collapse li {
+  padding-left: 10px;
+}
+
+/* Active submenu item */
+#sidebar .active {
+  font-weight: bold;
+}
