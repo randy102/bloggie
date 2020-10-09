@@ -1,22 +1,19 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using Bloggie.Utils;
 using Bloggie.Data;
-using Bloggie.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
 namespace Bloggie.Pages.Admin {
     public class CreateUserModel : PageModel {
         private BloggieContext db;
         public CreateUserModel(BloggieContext db) => this.db = db;
 
+        //Đối tượng dùng để ánh xạ thông tin từ form input
         [BindProperty]
         public Bloggie.Models.User User { get; set; } = null;
-        public void OnGet() { }
 
         //Lời nhắn trạng thái
+        //không bắt buộc có
         public string statusMsg { get; set; } = "init";
         public IActionResult OnPost() {
             //Kiểm tra email
