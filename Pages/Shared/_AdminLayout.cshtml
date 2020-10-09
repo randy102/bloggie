@@ -1,0 +1,71 @@
+@section Styles {
+  <link href="~/css/adminLayout.css" rel="stylesheet" type="text/css" />
+}
+
+@{
+  Layout = "_MainLayout";
+
+  string pageUrl = Context.Request.Path;
+
+  void SubmenuItem(string itemUrl, string text) {
+    <li>
+      <a href="@itemUrl" class="@(itemUrl == pageUrl ? "active" : "")">
+        @text
+      </a>
+    </li>
+  }
+  
+  void SidebarItem(
+    string dropdownBaseUrl,
+    string dropdownLabel,
+    string dropdownId,
+    string[] itemUrls,
+    string[] itemTitles) {
+    var dropdownIsActive = pageUrl.StartsWith(dropdownBaseUrl);
+
+    <li>
+      @* Dropdown label *@
+      <a
+        href="#@dropdownId"
+        data-toggle="collapse"
+        aria-expanded="false"
+        class="dropdown-toggle @(dropdownIsActive ? "active" : "")">
+        @dropdownLabel
+      </a>
+
+      @* Dropdown items *@
+      <ul
+        class="collapse list-unstyled @(dropdownIsActive ? "show" : "")"
+        id="@dropdownId">
+        @for (int i = 0; i < itemUrls.Length; i++) {
+          SubmenuItem(dropdownBaseUrl + "/" + itemUrls[i], itemTitles[i]);
+        }
+      </ul>
+    </li>
+  }
+}
+
+<div class="wrapper">
+  <!-- Sidebar -->
+  <nav id="sidebar">
+    <ul class="list-unstyled components">
+      @{
+        SidebarItem(
+          "/Admin/User",
+          "User",
+          "userSubmenu",
+          new string[] {"ListUser", "CreateUser", "UpdateUser"},
+          new string[] {"User list", "Create user", "Update user"}
+        );
+      }
+    </ul>
+  </nav>
+
+  <!-- Page Content -->
+  <div id="content">
+      @RenderBody()
+  </div>
+</div>    
+
+
+
