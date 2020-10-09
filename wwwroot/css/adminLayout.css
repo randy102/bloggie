@@ -1,26 +1,31 @@
-.wrapper {
+.admin-layout {
   display: flex;
   width: 100%;
   align-items: stretch;
 }
 
-#sidebar {
+.admin-layout__sidebar {
   width: 150px;
   min-height: 100%;
 }
 
-#content {
+.admin-layout__content {
   padding-left: 20px;
 }
 
-/* Sidebar item */
-a[data-toggle="collapse"] {
-  position: relative;
-  display: block;
+/* Sidebar dropdown container */
+.sidebar-dropdown {
 }
 
-/* Sidebar item dropdown arrow */
-.dropdown-toggle::after {
+/* Sidebar dropdown label */
+.sidebar-dropdown__label {
+  position: relative;
+  display: block;
+  font-size: 20px;
+}
+
+/* Sidebar dropdown label arrow */
+.sidebar-dropdown__label::after {
   display: block;
   position: absolute;
   top: 50%;
@@ -28,17 +33,31 @@ a[data-toggle="collapse"] {
   transform: translateY(-50%);
 }
 
-/* Submenu container */
-#sidebar .collapse {
-  transition: 0.2s ease-in-out;
+/* Sidebar dropdown items container */
+.sidebar-dropdown__items {
+  padding-left: 8px;
 }
 
-/* Submenu items */
-#sidebar .collapse li {
-  padding-left: 10px;
+/* Sidebar dropdown item */
+.sidebar-dropdown__item {
 }
 
-/* Active submenu item */
-#sidebar .active {
+/* Sidebar dropdown item label hover */
+.sidebar-dropdown__item a:hover {
+  text-decoration: none;
+}
+
+/* Sidebar dropdown item label hover text */
+.sidebar-dropdown__item a:hover span {
+  text-decoration: underline;
+}
+
+/* Sidebar dropdown item icon */
+.sidebar-dropdown__item span {
+  margin-left: 4px;
+}
+
+/* Active sidebar dropdown label and item */
+.sidebar-dropdown .active {
   font-weight: bold;
 }
