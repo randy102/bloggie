@@ -5,64 +5,91 @@
 @{
   Layout = "_MainLayout";
 
+  ViewData["Title"] = "Admin";
+
   string pageUrl = Context.Request.Path;
 
-  void SubmenuItem(string itemUrl, string text) {
-    <li>
-      <a href="@itemUrl" class="@(itemUrl == pageUrl ? "active" : "")">
-        @text
+  void DropdownItem(string url, string text, string icon) {
+    <li class="sidebar-dropdown__item">
+      <a href="@url" class="@(url == pageUrl ? "active" : "")">
+        <i class="fas fa-@icon"></i>
+        <span>@text</span>
       </a>
     </li>
   }
   
-  void SidebarItem(
+  void SidebarDropdown(
     string dropdownBaseUrl,
     string dropdownLabel,
-    string dropdownId,
     string[] itemUrls,
-    string[] itemTitles) {
+    string[] itemTitles,
+    string[] itemIcons
+  ) {
     var dropdownIsActive = pageUrl.StartsWith(dropdownBaseUrl);
 
-    <li>
+    // Label active class
+    var labelActive = dropdownIsActive ? "active" : "";
+
+    // Show dropdown class
+    var showDropdown = dropdownIsActive ? "show" : "";
+
+    // Random dropdown id
+    var randomId = Guid.NewGuid().ToString("N");
+
+    <li class="sidebar-dropdown">
       @* Dropdown label *@
       <a
-        href="#@dropdownId"
+        href="#ID-@randomId"
         data-toggle="collapse"
         aria-expanded="false"
-        class="dropdown-toggle @(dropdownIsActive ? "active" : "")">
+        class="dropdown-toggle sidebar-dropdown__label @labelActive"
+      >
         @dropdownLabel
       </a>
 
       @* Dropdown items *@
       <ul
-        class="collapse list-unstyled @(dropdownIsActive ? "show" : "")"
-        id="@dropdownId">
+        class="collapse list-unstyled sidebar-dropdown__items @showDropdown"
+        id="ID-@randomId"
+      >
         @for (int i = 0; i < itemUrls.Length; i++) {
-          SubmenuItem(dropdownBaseUrl + "/" + itemUrls[i], itemTitles[i]);
+          DropdownItem(dropdownBaseUrl + "/" + itemUrls[i], itemTitles[i], itemIcons[i]);
         }
       </ul>
     </li>
   }
 }
 
-<div class="wrapper">
+<div class="admin-layout">
   <!-- Sidebar -->
-  <nav id="sidebar">
+  <nav class="admin-layout__sidebar">
     <ul class="list-unstyled components">
       @{
-        SidebarItem(
-          "/Admin/User",
-          "User",
-          "userSubmenu",
-          new string[] {"ListUser", "CreateUser", "UpdateUser"},
-          new string[] {"User list", "Create user", "Update user"}
+        SidebarDropdown(
+          "/Admin/User",  // base url
+          "User",         // label
+          new string[] {
+            "ListUser",
+            "CreateUser",
+            "UpdateUser"
+          },
+          new string[] {
+            "User list",
+            "Create user",
+            "Update user"
+          },
+          new string[] {
+            "user-friends",
+            "user-plus",
+            "user-edit"
+          }
         );
       }
     </ul>
   </nav>
 
   <!-- Page Content -->
-  <div id="content">
+  <div class="admin-layout__content">
       @RenderBody()
   </div>
 </div>    
