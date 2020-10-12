@@ -28,20 +28,22 @@
 
 			<hr>
 
-			<form class="form-horizontal" style="margin-left: 50px;">
+			<form class="form-horizontal" style="margin-left: 50px;" method="POST">
 				<div class="form-group input-group">
 					<span class="input-group-prepend">
 						<span class="input-group-img"><img src="./icon/user.png"></span>
 					</span>
-					<input type="name" class="form-control" name="name" placeholder="nhập tên tài khoản..." style="border-radius: 20px;" required>
+					<input type="email" class="form-control" asp-for="Email" placeholder="nhập email..." style="border-radius: 20px;" required>
 				</div>
 				<div class="form-group input-group">
 					<span class="input-group-addon">
 						<span class="input-group-img"><img src="./icon/pass.png"></span>
 					</span>
-					<input type="password" class="form-control" name="password" placeholder="nhập mật khẩu..." style="border-radius: 20px;" required>
+					<input type="password" class="form-control" asp-for="Password" placeholder="nhập mật khẩu..." style="border-radius: 20px;" required>
 				</div>
-
+				<div class="text-danger">
+						@Model.Message
+				</div>
 				<div class="form-group">
 					<button class="btn btn-primary" style="width: 200px; margin-left: 120px; border-radius: 16px;">Đăng nhập</button>
 				</div>

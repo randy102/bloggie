@@ -36,13 +36,13 @@ namespace Bloggie
         });
       services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(cookieOptions =>
       {
-        cookieOptions.LoginPath = "/";
+        cookieOptions.LoginPath = "/Login";
       });
 
       services.AddMvc().AddRazorPagesOptions(options =>
       {
         options.Conventions.AuthorizeFolder("/admin");
-      }).SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+      }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
       services.AddDbContext<BloggieContext>();
     }
