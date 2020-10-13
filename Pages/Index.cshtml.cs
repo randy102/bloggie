@@ -27,7 +27,7 @@ namespace Bloggie.Pages
     public async Task<IActionResult> OnPost()
     {
       //var user = db.Users.Where(u => u.Email == "welldey102");
-
+    db.Users.Where(u => u.Email == "asd");
       if (Email == "welldey102@gmail.com")
       {
         var passwordHasher = new PasswordHasher<string>();

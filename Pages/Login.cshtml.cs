@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
@@ -18,7 +19,7 @@ namespace Bloggie.Pages
 
     [BindProperty]
     public string Email { get; set; }
-    
+
     [BindProperty, DataType(DataType.Password)]
     public string Password { get; set; }
 
@@ -26,18 +27,21 @@ namespace Bloggie.Pages
 
     public async Task<IActionResult> OnPost()
     {
-      if (Email == "welldey102@gmail.com")
+      var existed = db.Users.Where(user => user.Email == Email).FirstOrDefault();
+
+      if (existed != null)
       {
         var passwordHasher = new PasswordHasher<string>();
-        if (Password == "12345")
+        if (passwordHasher.VerifyHashedPassword(null, existed.Password, Password) == PasswordVerificationResult.Success)
         {
           var claims = new List<Claim>
-                    {
-                        new Claim(ClaimTypes.Name, Email)
-                    };
+            {
+              new Claim(ClaimTypes.Email, Email),
+              new Claim(ClaimTypes.Role, existed.Role.ToString())
+            };
           var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
           await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-          return RedirectToPage("/admin/index");
+          return RedirectToPage("/admin/user/listuser");
         }
       }
       Message = "Email or Password incorrect!";
