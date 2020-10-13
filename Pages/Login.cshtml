@@ -3,17 +3,11 @@
 @{
     Layout = "_MainLayout";
 }
-
-@section Styles {
-  <link href="~/css/adminLayout.css" rel="stylesheet" type="text/css" />
-}
-
 <!DOCTYPE html>
 <html>
 <head>
 	<title>Đăng nhập</title>
 	<meta charset="utf-8">
-	<link rel="stylesheet" type="text/css" href="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
@@ -28,31 +22,36 @@
 
 			<hr>
 
-			<form class="form-horizontal" style="margin-left: 50px;">
+			<form action="#" method="POST" class="needs-validation form-horizontal" style="margin-left: 50px;" novalidate>
 				<div class="form-group input-group">
 					<span class="input-group-prepend">
-						<span class="input-group-img"><img src="./icon/user.png"></span>
+						<span class="input-group-img"><i class="fa fa-user" style="font-size: 36px; margin-right:6px;"></i></span>
 					</span>
-					<input type="name" class="form-control" name="name" placeholder="nhập tên tài khoản..." style="border-radius: 20px;" required>
+					<input type="text" class="form-control" name="username" placeholder="nhập tên tài khoản..." style="border-radius: 20px;" required>
+					<div class="invalid-feedback">Tên tài khoản không được để trống!</div>
 				</div>
 				<div class="form-group input-group">
 					<span class="input-group-addon">
-						<span class="input-group-img"><img src="./icon/pass.png"></span>
+						<span class="input-group-img"><i class="fa fa-lock" style="font-size: 36px; margin-left: 2px; margin-right:6px;"></i></span>
 					</span>
 					<input type="password" class="form-control" name="password" placeholder="nhập mật khẩu..." style="border-radius: 20px;" required>
+					<div class="invalid-feedback">Mật khẩu không được để trống!</div>
 				</div>
 
 				<div class="form-group">
 					<button class="btn btn-primary" style="width: 200px; margin-left: 120px; border-radius: 16px;">Đăng nhập</button>
 				</div>
+				
+				<div class="row">
+				
+					<div class="form-group col-sm-6">
+						Chưa có tài khoản?
+						<a asp-page="/Register">Đăng ký</a>
+					</div>	
+					<div class="form-group col-sm-6">
+						<a href="#" style="margin-left: 60px;">Quên mật khẩu</a>
+					</div>
 
-				<div class="form-group">
-					<a href="#" style="margin-left: 320px;">Quên mật khẩu</a>
-				</div>
-
-                <div class="form-group">
-                    Chưa có tài khoản?
-					<a asp-page="/Register">Đăng ký</a>
 				</div>
 
 			</form>
@@ -61,12 +60,8 @@
 	</div>
 </div>
 
+<script src="~/js/Register.js"></script>
 
-<!-- JS, Popper.js, and jQuery -->
-	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
-	
 </body>
 </html>
 
