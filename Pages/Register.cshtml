@@ -3,6 +3,9 @@
 @{
     Layout = "_MainLayout";
 }
+@section Scripts{
+	<script src="~/js/Register.js"></script>
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,37 +18,46 @@
 	<div class="col-sm-10" style="width: 600px;margin-left: 250px;margin-top: 50px;">
 		<div class="jumbotron">
 			<div class="form-group" style="margin-top: -50px">
-				<h1 style="margin-left: 165px;">
+				<h1 style="margin-left: 186px;">
 					Đăng ký
 				</h1>
 			</div>
 
 			<hr>
 
-			<form method="post" class="form-horizontal" style="margin-left: 50px;">
+			<form  method="POST" onsubmit="return checkPw(this)" class="needs-validation form-horizontal" style="margin-left: 50px;" novalidate>
 				<div class="form-group input-group">
 					<span class="input-group-prepend">
-						<span class="input-group-img"><img src="./icon/email.png"></span>
+						<span class="input-group-img"><i class="fa fa-envelope" style="font-size: 30px; margin-top: 5px; margin-right:6px;"></i></span>
 					</span>
-					<input asp-for="Email" class="form-control" id="email" placeholder="Nhập tài khoản Email..." style="border-radius: 20px;">
+					<input asp-for="Email" class="form-control" type="email"  placeholder="Nhập email..." style="border-radius: 20px;" required>
+					<div class="invalid-feedback">Nhập đúng định dạng email! Không được để trống!</div>
+				</div>
+				
+				<div class="form-group input-group">
+					<span class="input-group-prepend">
+						<span class="input-group-img"><i class="fa fa-user" style="font-size: 35px; margin-right:6px;"></i></span>
+					</span>
+					<input asp-for="FullName" class="form-control" placeholder="Nhập họ tên..." style="border-radius: 20px;" required>
+					<div class="invalid-feedback">Họ tên không được để trống!</div>
 				</div>
 
+				
+
 				<div class="form-group input-group">
-					<span class="input-group-prepend">
-						<span class="input-group-img"><img src="./icon/user.png"></span>
+					<span class="input-group-addon">
+						<span class="input-group-img"><i class="fa fa-lock" style="font-size: 36px; margin-top: 1px; margin-right:6px;"></i></span>
 					</span>
-					<input asp-for="FullName" class="form-control" id="username" placeholder="Nhập họ tên..." style="border-radius: 20px;">
+					<input asp-for="Password" type="password" class="form-control" name="pw1" id = "password0" placeholder="Nhập mật khẩu..." style="border-radius: 20px;" required>
+					<div class="invalid-feedback">Mật khẩu không được để trống!</div>
 				</div>
 
 				<div class="form-group input-group">
 					<span class="input-group-addon">
-						<span class="input-group-img"><img src="./icon/pass.png"></span>
+						<span class="input-group-img"><i class="fa fa-lock" style="font-size: 36px; margin-top: 1px; margin-right:6px;"></i></span>
 					</span>
-					<input asp-for="Password" type="password" class="form-control" id = "password" placeholder="Nhập mật khẩu..." style="border-radius: 20px;">
-				</div>
-
-				<div class="form-group">
-					<button class="btn btn-primary" style="width: 200px; margin-left: 120px; border-radius: 16px;">Đăng nhập</button>
+					<input type="password" class="form-control" name="pw2" id = "password1" placeholder="Nhập lại mật khẩu..." style="border-radius: 20px;" required>
+					<div class="invalid-feedback">Mật khẩu không được để trống!</div>
 				</div>
 
 				<div class="text-success">
@@ -53,10 +65,10 @@
 				</div>
 
 				<div class="form-group">
-					<a href="#" style="margin-left: 320px;">Quên mật khẩu</a>
+					<button class="btn btn-primary" style="width: 200px; margin-left: 120px; border-radius: 16px;">Đăng ký</button>
 				</div>
 
-                  <div class="form-group">
+            	<div class="form-group" style="margin-left: 122px;">
                     Đã có tài khoản?
 					<a asp-page="/Login">Đăng nhập</a>
 				</div>
@@ -66,24 +78,5 @@
 		</div>
 	</div>
 </div>
-
-
-<script src="./bootstrap-validate.js" ></script>
-
-<script>
-	bootstrapValidate(
-   '#username',
-   'required:Tên tài khoản không được để trống!'
-   bootstrapValidate(
-   '#email',
-   'email:Nhập tài khoản email không được để trống!'
-   bootstrapValidate(
-   '#password',
-   'required:Mật khẩu không được để trống!'
-);
-</script>
-
-<!-- JS, Popper.js, and jQuery -->
-	
 </body>
 </html>

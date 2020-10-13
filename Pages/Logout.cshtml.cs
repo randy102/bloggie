@@ -15,7 +15,7 @@ namespace Bloggie.Pages
     public async Task<IActionResult> OnGet()
     {
         if(!HttpContext.User.Identity.IsAuthenticated)
-            return RedirectToPage("/");
+            return RedirectToPage("/Index");
         try{
             await HttpContext.SignOutAsync();
             SuccessMessage = "Logout Success!";
