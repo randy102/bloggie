@@ -11,7 +11,6 @@ namespace Bloggie.Models
     [DataType(DataType.Password)]
     [Required]
     public string Password { get; set; }
-    
     public string FullName { get; set; }
     public bool Active { get; set; }=true;
     public UserRole Role { get; set; }

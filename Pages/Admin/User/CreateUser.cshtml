@@ -8,8 +8,8 @@
 
 
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </head>
 
 <h1>Create Account</h1>
@@ -19,10 +19,22 @@
     <label asp-for="@Model.User.Email"></label>
     <input asp-for="@Model.User.Email" required>
     <label asp-for="@Model.User.FullName"></label>
-    <input asp-for="@Model.User.FullName"required>
+    <input asp-for="@Model.User.FullName" required>
 
     <label asp-for="@Model.User.Password"></label>
     <input asp-for="@Model.User.Password" required>
-    <input type="checkbox" checked data-toggle="toggle">
+    <label for="cars">Choose a Role:</label>
+
+    <select asp-for="@Model.User.Role">
+        @{
+            foreach(Bloggie.Models.UserRole role in Enum.GetValues(typeof(Bloggie.Models.UserRole))){
+                if(role==Models.UserRole.Admin){
+                    continue;
+                }
+                <option asp-value="role">@role</option>
+            }
+
+        }
+    </select>
     <input type="submit" value="submit">
 </form>
