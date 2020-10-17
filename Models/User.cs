@@ -6,8 +6,12 @@ namespace Bloggie.Models
   {
     public int Id { get; set; }
     [DataType(DataType.EmailAddress)]
+    [Required]
     public string Email { get; set; }
+    [DataType(DataType.Password)]
+    [Required]
     public string Password { get; set; }
+    
     public string FullName { get; set; }
     public bool Active { get; set; }=true;
     public UserRole Role { get; set; }
