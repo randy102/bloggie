@@ -3,8 +3,7 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
-using System.Collections.Generic;
+using Bloggie.Utils;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
@@ -35,12 +34,10 @@ namespace Bloggie.Pages
         var existed = await db.Users.Where(user => user.Email == Email).FirstOrDefaultAsync();
         if (existed != null) throw new Exception("Email existed!");
 
-        var passwordHasher = new PasswordHasher<string>();
-        var hashedPassword = passwordHasher.HashPassword(null, Password);
-        var user = new User { Email = Email, FullName = FullName, Password = hashedPassword, Role = UserRole.Writer, Active=true };
+        var user = new User { Email = Email, FullName = FullName, Password = Hash.GetHashString(Password), Role = UserRole.Writer, Active = true };
         await db.Users.AddAsync(user);
         await db.SaveChangesAsync();
-        
+
         Message = "Success!";
         return Page();
       }
