@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Identity;
+using Bloggie.Utils;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using Bloggie.Data;
@@ -31,8 +31,7 @@ namespace Bloggie.Pages
 
       if (existed != null)
       {
-        var passwordHasher = new PasswordHasher<string>();
-        if (passwordHasher.VerifyHashedPassword(null, existed.Password, Password) == PasswordVerificationResult.Success)
+        if (Hash.GetHashString(Password).Equals(existed.Password))
         {
           var claims = new List<Claim>
             {
