@@ -2,95 +2,37 @@
   <link href="~/css/adminLayout.css" rel="stylesheet" type="text/css" />
 }
 
+@using Bloggie.Models
+
 @{
   Layout = "_MainLayout";
 
   ViewData["Title"] = "Admin";
 
-  string pageUrl = Context.Request.Path;
-
-  void DropdownItem(string url, string text, string icon) {
-    <li class="sidebar-dropdown__item">
-      <a href="@url" class="@(url == pageUrl ? "active" : "")">
-        <i class="fas fa-@icon"></i>
-        <span>@text</span>
-      </a>
-    </li>
-  }
-  
-  void SidebarDropdown(
-    string dropdownBaseUrl,
-    string dropdownLabel,
-    string[] itemUrls,
-    string[] itemTitles,
-    string[] itemIcons
-  ) {
-    var dropdownIsActive = pageUrl.StartsWith(dropdownBaseUrl);
-
-    // Label active class
-    var labelActive = dropdownIsActive ? "active" : "";
-
-    // Show dropdown class
-    var showDropdown = dropdownIsActive ? "show" : "";
-
-    // Random dropdown id
-    var randomId = Guid.NewGuid().ToString("N");
-
-    <li class="sidebar-dropdown">
-      @* Dropdown label *@
-      <a
-        href="#ID-@randomId"
-        data-toggle="collapse"
-        aria-expanded="false"
-        class="dropdown-toggle sidebar-dropdown__label @labelActive"
-      >
-        @dropdownLabel
-      </a>
-
-      @* Dropdown items *@
-      <ul
-        class="collapse list-unstyled sidebar-dropdown__items @showDropdown"
-        id="ID-@randomId"
-      >
-        @for (int i = 0; i < itemUrls.Length; i++) {
-          DropdownItem(dropdownBaseUrl + "/" + itemUrls[i], itemTitles[i], itemIcons[i]);
-        }
-      </ul>
-    </li>
-  }
+  SidebarItem[] UserDropdownItems = {
+    new SidebarItem("ListUser", "User list", "user-friends"),
+    new SidebarItem("CreateUser", "Create user", "user-plus"),
+    new SidebarItem("UpdateUser", "Update user", "user-edit"),
+  };
 }
 
 <div class="admin-layout">
   <!-- Sidebar -->
   <nav class="admin-layout__sidebar">
     <ul class="list-unstyled components">
-      @{
-        SidebarDropdown(
-          "/Admin/User",  // base url
-          "User",         // label
-          new string[] {
-            "ListUser",
-            "CreateUser",
-            "UpdateUser"
-          },
-          new string[] {
-            "User list",
-            "Create user",
-            "Update user"
-          },
-          new string[] {
-            "user-friends",
-            "user-plus",
-            "user-edit"
-          }
-        );
-      }
+
+      <vc:sidebar-dropdown-component
+        base-url="/Admin/User"
+        label="User"
+        sidebar-items="UserDropdownItems"
+      />
+      
     </ul>
   </nav>
 
   <!-- Page Content -->
   <div class="admin-layout__content">
-      @RenderBody()
+    @RenderBody()
   </div>
 </div>    
 

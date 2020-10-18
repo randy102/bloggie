@@ -1,5 +1,9 @@
 {
   "FormattingOptions": {
+    "UseTabs": false,
+    "TabSize": 2,
+    "IndentationSize": 2,
+
     "NewLinesForBracesInLambdaExpressionBody": false,
     "NewLinesForBracesInAnonymousMethods": false,
     "NewLinesForBracesInAnonymousTypes": false,
@@ -9,6 +13,7 @@
     "NewLinesForBracesInProperties": false,
     "NewLinesForBracesInObjectCollectionArrayInitializers": false,
     "NewLinesForBracesInAccessors": false,
+
     "NewLineForElse": false,
     "NewLineForCatch": false,
     "NewLineForFinally": false

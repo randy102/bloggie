@@ -1,7 +1,5 @@
-namespace Bloggie.Models
-{
-  public class User
-  {
+namespace Bloggie.Models {
+  public class User {
     public int Id { get; set; }
     public string Email { get; set; }
     public string Password { get; set; }
@@ -10,8 +8,7 @@ namespace Bloggie.Models
     public UserRole Role { get; set; }
   }
 
-  public enum UserRole
-  {
+  public enum UserRole {
     Writer,
     Moderator,
     Admin
