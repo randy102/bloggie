@@ -1,15 +1,18 @@
 @page
 @model Bloggie.Pages.RegisterModel
+
 @{
     Layout = "_MainLayout";
 }
+
 @section Scripts{
 	<script src="~/js/Register.js"></script>
 }
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Đăng ký</title>
+	<title>Register</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -19,7 +22,7 @@
 		<div class="jumbotron">
 			<div class="form-group" style="margin-top: -50px">
 				<h1 style="margin-left: 186px;">
-					Đăng ký
+					Register
 				</h1>
 			</div>
 
@@ -31,24 +34,24 @@
 					<span class="input-group-prepend">
 						<span class="input-group-img"><i class="fa fa-envelope" style="font-size: 30px; margin-top: 5px; margin-right:6px;"></i></span>
 					</span>
-					<input asp-for="Email" class="form-control" type="email"  placeholder="Nhập email..." style="border-radius: 20px;" required>
-					<div class="invalid-feedback">Nhập đúng định dạng email! Không được để trống!</div>
+					<input asp-for="Email" class="form-control" type="email"  placeholder="Email..." style="border-radius: 20px;" required>
+					<div class="invalid-feedback">Enter the correct email format! Do not leave blank!</div>
 				</div>
 				
 				<div class="form-group input-group">
 					<span class="input-group-prepend">
 						<span class="input-group-img"><i class="fa fa-user" style="font-size: 35px; margin-right:6px;"></i></span>
 					</span>
-					<input asp-for="FullName" class="form-control" placeholder="Nhập họ tên..." style="border-radius: 20px;" required>
-					<div class="invalid-feedback">Họ tên không được để trống!</div>
+					<input asp-for="FullName" class="form-control" placeholder="Fullname..." style="border-radius: 20px;" required>
+					<div class="invalid-feedback">Full name cannot be left blank!</div>
 				</div>
 
 				<div class="form-group input-group">
 					<span class="input-group-addon">
 						<span class="input-group-img"><i class="fa fa-lock" style="font-size: 36px; margin-top: 1px; margin-right:6px;"></i></span>
 					</span>
-					<input asp-for="Password" type="password" class="form-control" id = "password0" placeholder="Nhập mật khẩu..." style="border-radius: 20px;" required>
-					<div class="invalid-feedback">Mật khẩu không được để trống!</div>
+					<input asp-for="Password" type="password" class="form-control" id = "password0" placeholder="Password..." style="border-radius: 20px;" required>
+					<div class="invalid-feedback">Password can not be blank!</div>
 				</div>
 
 				<div class="text-success">
@@ -56,12 +59,12 @@
 				</div>
 
 				<div class="form-group">
-					<button class="btn btn-primary" style="width: 200px; margin-left: 120px; border-radius: 16px;">Đăng ký</button>
+					<button class="btn btn-primary" style="width: 200px; margin-left: 120px; border-radius: 16px;">Sign up</button>
 				</div>
 
             	<div class="form-group" style="margin-left: 122px;">
-                    Đã có tài khoản?
-					<a asp-page="/Login">Đăng nhập</a>
+                    Have an account?
+					<a asp-page="/Login">Login</a>
 				</div>
 
 			</form>

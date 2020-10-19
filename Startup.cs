@@ -45,6 +45,11 @@ namespace Bloggie
       }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
       services.AddDbContext<BloggieContext>();
+
+      services.AddMvc().AddRazorOptions(options =>
+      {
+          options.PageViewLocationFormats.Add("/Pages/Admin/User/PartialPage/{0}.cshtml");
+      });
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

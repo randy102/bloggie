@@ -1,12 +1,18 @@
 @page
 @model Bloggie.Pages.LoginModel
+
 @{
     Layout = "_MainLayout";
 }
+
+@section Scripts{
+	<script src="~/js/Register.js"></script>
+}
+
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Đăng nhập</title>
+	<title>Login</title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
@@ -15,8 +21,8 @@
 	<div class="col-sm-10" style="width: 600px;margin-left: 250px;margin-top: 50px;">
 		<div class="jumbotron">
 			<div class="form-group" style="margin-top: -50px">
-				<h1 style="margin-left: 165px;">
-					Đăng nhập
+				<h1 style="margin-left: 215px;">
+					Login
 				</h1>
 			</div>
 
@@ -28,8 +34,8 @@
 						<span class="input-group-img"><i class="fa fa-user" style="font-size: 36px; margin-right:6px;"></i></span>
 					</span>
 
-					<input type="email" name="email" class="form-control" asp-for="Email" placeholder="nhập email..." style="border-radius: 20px;" required>
-					<div class="invalid-feedback">Email không được để trống!</div>
+					<input type="email" name="email" class="form-control" asp-for="Email" placeholder="Email..." style="border-radius: 20px;" required>
+					<div class="invalid-feedback">Enter the correct email format! Do not leave blank!</div>
 				</div>
 
 
@@ -39,8 +45,8 @@
 					</span>
 
 
-					<input type="password" class="form-control" asp-for="Password" name="password" placeholder="nhập mật khẩu..." style="border-radius: 20px;" required>
-					<div class="invalid-feedback">Mật khẩu không được để trống!</div>
+					<input type="password" class="form-control" asp-for="Password" name="password" placeholder="Password..." style="border-radius: 20px;" required>
+					<div class="invalid-feedback">Password can not be blank!</div>
 				</div>
 
 
@@ -49,17 +55,17 @@
 				</div>
 
 				<div class="form-group">
-					<button class="btn btn-primary" style="width: 200px; margin-left: 120px; border-radius: 16px;">Đăng nhập</button>
+					<button class="btn btn-primary" style="width: 200px; margin-left: 125px; border-radius: 16px;">Login</button>
 				</div>
 				
 				<div class="row">
 				
 					<div class="form-group col-sm-6">
-						Chưa có tài khoản?
-						<a asp-page="/Register">Đăng ký</a>
+						Create an account?
+						<a asp-page="/Register">Register</a>
 					</div>	
 					<div class="form-group col-sm-6">
-						<a href="#" style="margin-left: 60px;">Quên mật khẩu</a>
+						<a href="#" style="margin-left: 35px;">Forgot your password?</a>
 					</div>
 
 				</div>
@@ -69,8 +75,6 @@
 		</div>
 	</div>
 </div>
-
-<script src="~/js/Register.js"></script>
 
 </body>
 </html>

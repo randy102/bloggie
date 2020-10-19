@@ -4,10 +4,10 @@ namespace Bloggie.Models {
   public class User {
     public int Id { get; set; }
     [DataType(DataType.EmailAddress)]
-    [Required]
+    //[Required]
     public string Email { get; set; }
     [DataType(DataType.Password)]
-    [Required]
+    //[Required]
     public string Password { get; set; }
     public string FullName { get; set; }
     public bool Active { get; set; } = true;

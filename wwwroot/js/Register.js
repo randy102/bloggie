@@ -11,14 +11,16 @@
 			if (form.checkValidity() === false) {
 	          event.preventDefault();
 	          event.stopPropagation();
-	        }
-	        
-	        form.classList.add('was-validated');
+			}
+			
+	       	form.classList.add('was-validated');
 	      }, false);
 	    });
 	  }, false);
 	})();
+/*
 function checkPw(form) {
+
 	pw1 = form.pw1.value;
 	pw2 = form.pw2.value;
 
@@ -28,5 +30,4 @@ function checkPw(form) {
 	}
 	else return true;
 	}
-
-	
+*/	
