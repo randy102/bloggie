@@ -1,5 +1,8 @@
-﻿<!DOCTYPE html>
+﻿@using System.Security.Claims
+
+<!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,6 +12,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
     @RenderSection("Styles", required: false)
 </head>
+
 <body>
     <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
@@ -23,19 +27,47 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
                         </li>
-                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Admin/User/ListUser">Admin</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Login">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
-                        </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Logout">Logout</a>
-                        </li>
+                        @if (!User.Identity.IsAuthenticated) {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Login">Login</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
+                            </li>
+                        }
+
+
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                        <li class="nav-item dropdown">
+                            <a class="nav-link " data-toggle="dropdown">
+                                @User.FindFirst(ClaimTypes.Name).Value
+                            </a>
+
+                            <div class="dropdown-menu">
+                                <div class="form-group">
+                                    <a class="dropdown-item" asp-page="/Profile/User/PersonalInformation" ><i class="fa fa-user"></i> Personal information</a>
+                                </div>  
+
+
+                                @if (User.IsInRole("Admin")) {
+                                    <div class="form-group">
+                                        <a class="dropdown-item" asp-page="/Admin/User/ListUser"><i class="fa fa-cog"></i> Management</a>
+                                    </div> 
+                                }
+                                else if (User.IsInRole("Moderator")) {
+                                    <div class="form-group">
+                                        <a class="dropdown-item"><i class="fa fa-cog"></i> Article management</a>
+                                    </div>
+                                }
+
+                                <div class="form-group">
+                                    <a class="dropdown-item" asp-page="/Logout"><i class="fa fa-sign-out-alt"></i> Logout</a>
+                                </div>  
+                            </div>
+                        </li>   
+                        }
 
                     </ul>
                 </div>

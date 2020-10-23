@@ -19,6 +19,9 @@ namespace Bloggie.Pages
     public LoginModel(BloggieContext db) => this.db = db;
 
     [BindProperty]
+    public String FullName{ get; set;}
+
+    [BindProperty]
     public string Email { get; set; }
 
     [BindProperty, DataType(DataType.Password)]
@@ -37,11 +40,12 @@ namespace Bloggie.Pages
           var claims = new List<Claim>
             {
               new Claim(ClaimTypes.Email, Email),
-              new Claim(ClaimTypes.Role, existed.Role.ToString())
+              new Claim(ClaimTypes.Role, existed.Role.ToString()),
+              new Claim(ClaimTypes.Name, FullName)
             };
           var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
           await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
-          return RedirectToPage("/admin/user/listuser");
+          return RedirectToPage("/Index");
         }
       }
       Message = "Email or Password incorrect!";

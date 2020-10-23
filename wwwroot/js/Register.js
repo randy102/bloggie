@@ -18,16 +18,26 @@
 	    });
 	  }, false);
 	})();
-/*
+
 function checkPw(form) {
 
 	pw1 = form.pw1.value;
 	pw2 = form.pw2.value;
 
 	if (pw1 != pw2) {
-	alert ("\nMật khẩu nhập không trùng khớp!")
+	alert ("\nPasswords does not match!")
 	return false;
 	}
 	else return true;
 	}
-*/	
+function checkFn(form) {
+
+	fn1 = form.fn1.value;
+	fn2 = form.fn2.value;
+
+	if (fn1 != fn2) {
+	alert ("\nNames does not match!")
+	return false;
+	}
+	else return true;
+}
