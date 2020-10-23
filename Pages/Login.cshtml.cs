@@ -11,15 +11,10 @@ using Bloggie.Utils;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using Bloggie.Data;
-namespace Bloggie.Pages
-{
-  public class LoginModel : PageModel
-  {
+namespace Bloggie.Pages {
+  public class LoginModel : PageModel {
     private readonly BloggieContext db;
     public LoginModel(BloggieContext db) => this.db = db;
-
-    [BindProperty]
-    public String FullName{ get; set;}
 
     [BindProperty]
     public string Email { get; set; }
@@ -29,19 +24,16 @@ namespace Bloggie.Pages
 
     public string Message { get; set; }
 
-    public async Task<IActionResult> OnPost()
-    {
+    public async Task<IActionResult> OnPost() {
       var existed = db.Users.Where(user => user.Email == Email).FirstOrDefault();
 
-      if (existed != null)
-      {
-        if (Hash.GetHashString(Password).Equals(existed.Password))
-        {
+      if (existed != null) {
+        if (Hash.GetHashString(Password).Equals(existed.Password)) {
           var claims = new List<Claim>
             {
               new Claim(ClaimTypes.Email, Email),
               new Claim(ClaimTypes.Role, existed.Role.ToString()),
-              new Claim(ClaimTypes.Name, FullName)
+              new Claim(ClaimTypes.Name, existed.FullName)
             };
           var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
           await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));

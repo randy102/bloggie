@@ -9,81 +9,69 @@
 
   string pageUrl = Context.Request.Path;
 
-  void DropdownItem(string url, string text, string icon) {
-    <li class="sidebar-dropdown__item">
-      <a href="@url" class="@(url == pageUrl ? "active" : "")">
-        <i class="fas fa-@icon"></i>
-        <span>@text</span>
-      </a>
-    </li>
-  }
-  
-  void SidebarDropdown(
-    string dropdownBaseUrl,
-    string dropdownLabel,
-    string[] itemUrls,
-    string[] itemTitles,
-    string[] itemIcons
-  ) {
-    var dropdownIsActive = pageUrl.StartsWith(dropdownBaseUrl);
-
-    // Label active class
-    var labelActive = dropdownIsActive ? "active" : "";
-
-    // Show dropdown class
-    var showDropdown = dropdownIsActive ? "show" : "";
-
-    // Random dropdown id
-    var randomId = Guid.NewGuid().ToString("N");
-
-    <li class="sidebar-dropdown">
-      @* Dropdown label *@
-      <a
-        href="#ID-@randomId"
-        data-toggle="collapse"
-        aria-expanded="false"
-        class="dropdown-toggle sidebar-dropdown__label @labelActive"
-      >
-        @dropdownLabel
-      </a>
-
-      @* Dropdown items *@
-      <ul
-        class="collapse list-unstyled sidebar-dropdown__items @showDropdown"
-        id="ID-@randomId"
-      >
-        @for (int i = 0; i < itemUrls.Length; i++) {
-          DropdownItem(dropdownBaseUrl + "/" + itemUrls[i], itemTitles[i], itemIcons[i]);
-        }
-      </ul>
-    </li>
-  }
+  var dropdowns = new[] {
+    new {
+      BaseUrl = "/Admin/User",
+      Label = "User",
+      Items = new [] {
+        new {
+          Url = "ListUser",
+          Text = "User list",
+          Icon = "user-friends"
+        },
+        new {
+          Url = "CreateUser",
+          Text = "Create user",
+          Icon = "user-plus"
+        },
+        new {
+          Url = "UpdateUser",
+          Text = "Update user",
+          Icon = "user-edit"
+        },
+      }
+    }
+  };
 }
 
 <div class="admin-layout">
   <!-- Sidebar -->
   <nav class="admin-layout__sidebar">
     <ul class="list-unstyled components">
-      @{
-        SidebarDropdown(
-          "/Admin/User",  // base url
-          "User",         // label
-          new string[] {
-            "ListUser",
-            "CreateUser",
-            "UpdateUser"
-          },
-          new string[] {
-            "User list",
-            "Create user",
-            "Update user"
-          },
-          new string[] {
-            "user-friends",
-            "user-plus",
-            "user-edit"
-          }
-        );
+      @foreach (var dropdown in dropdowns)
+      {
+        var dropdownIsActive = pageUrl.StartsWith(dropdown.BaseUrl);
+        var activeLabelClass = dropdownIsActive ? "active" : "";
+        var showDropdownClass = dropdownIsActive ? "show" : "";
+        var randomId = "ID-" + Guid.NewGuid().ToString("N");
+
+        <li class="sidebar-dropdown">
+          <a
+            href="#@randomId"
+            data-toggle="collapse"
+            aria-expanded="false"
+            class="dropdown-toggle sidebar-dropdown__label @activeLabelClass"
+          >
+            @(dropdown.Label)
+          </a>
+
+          <ul
+            class="collapse list-unstyled sidebar-dropdown__items @showDropdownClass"
+            id="@randomId"
+          >
+            @foreach (var item in dropdown.Items)
+            {
+              var url = dropdown.BaseUrl + "/" + item.Url;
+
+              <li class="sidebar-dropdown__item">
+                <a href="@url" class="@(url == pageUrl ? "active" : "")">
+                  <i class="fas fa-@(item.Icon)"></i>
+                  <span>@(item.Text)</span>
+                </a>
+              </li>
+            }
+          </ul>
+        </li>
       }
     </ul>
   </nav>

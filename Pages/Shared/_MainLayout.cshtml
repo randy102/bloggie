@@ -1,5 +1,9 @@
 ﻿@using System.Security.Claims
 
+@{
+    string pageUrl = Context.Request.Path;
+}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -15,61 +19,61 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-page="/Index">Bloggie</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+                <a class="navbar-brand" asp-page="/Index">Bloggie</a>
+
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bloggie-navbar"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <div id="bloggie-navbar" class="collapse navbar-collapse">
+                    <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-page="/Index">Home</a>
+                            <a class="nav-link text-dark" asp-page="/Index">Home</a>
                         </li>
-
-                        @if (!User.Identity.IsAuthenticated) {
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Login">Login</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-dark" asp-area="" asp-page="/Register">Register</a>
-                            </li>
-                        }
-
-
-                        @if (User.Identity.IsAuthenticated)
-                        {
-                        <li class="nav-item dropdown">
-                            <a class="nav-link " data-toggle="dropdown">
-                                @User.FindFirst(ClaimTypes.Name).Value
-                            </a>
-
-                            <div class="dropdown-menu">
-                                <div class="form-group">
-                                    <a class="dropdown-item" asp-page="/Profile/User/PersonalInformation" ><i class="fa fa-user"></i> Personal information</a>
-                                </div>  
-
-
-                                @if (User.IsInRole("Admin")) {
-                                    <div class="form-group">
-                                        <a class="dropdown-item" asp-page="/Admin/User/ListUser"><i class="fa fa-cog"></i> Management</a>
-                                    </div> 
-                                }
-                                else if (User.IsInRole("Moderator")) {
-                                    <div class="form-group">
-                                        <a class="dropdown-item"><i class="fa fa-cog"></i> Article management</a>
-                                    </div>
-                                }
-
-                                <div class="form-group">
-                                    <a class="dropdown-item" asp-page="/Logout"><i class="fa fa-sign-out-alt"></i> Logout</a>
-                                </div>  
-                            </div>
-                        </li>   
-                        }
-
                     </ul>
+
+                    <form class="form-inline">
+                        @if (!User.Identity.IsAuthenticated)
+                        {
+                            <a class="btn btn-primary mr-2" asp-page="/Login">Login</a>
+                            <a class="btn btn-outline-primary   " asp-page="/Register">Register</a>
+                        }
+                        else
+                        {
+                            <div class="dropdown">
+                                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                                    @User.FindFirst(ClaimTypes.Name).Value
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a class="dropdown-item @(pageUrl == "/Profile/User/PersonalInformation" ? "active" : "")"
+    asp-page="/Profile/User/PersonalInformation">
+                                        <i class="fa fa-user"></i> Personal information
+                                    </a>
+
+                                    @if (User.IsInRole("Admin"))
+                                    {
+                                        <a class="dropdown-item @(pageUrl == "/Admin/User/ListUser" ? "active" : "")"
+        asp-page="/Admin/User/ListUser">
+                                            <i class="fa fa-cog"></i> Management
+                                        </a>
+                                    }
+                                    else if (User.IsInRole("Moderator"))
+                                    {
+                                        <a class="dropdown-item @(pageUrl == "" ? "active" : "")">
+                                            <i class="fa fa-cog"></i> Article management
+                                        </a>
+                                    }
+
+                                    <a class="dropdown-item" asp-page="/Logout">
+                                        <i class="fa fa-sign-out-alt"></i> Logout
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                    </form>
                 </div>
             </div>
         </nav>
@@ -81,7 +85,7 @@
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="border-top footer text-muted box-shadow mt-3 bg-white">
         <div class="container">
             &copy; 2020 - Bloggie - <a asp-area="" asp-page="/Privacy">Privacy</a>
         </div>
@@ -94,4 +98,5 @@
 
     @RenderSection("Scripts", required: false)
 </body>
+
 </html>

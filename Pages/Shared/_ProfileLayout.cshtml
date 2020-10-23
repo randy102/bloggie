@@ -1,10 +1,11 @@
 ﻿@using System.Security.Claims
+
 @section Styles {
   <link href="~/css/profile.css" rel="stylesheet" type="text/css" />
 }
 
 @{
-    Layout="_MainLayout";
+  Layout="_MainLayout";
 }
 
 <div class="profile-layout">
@@ -13,10 +14,15 @@
       <nav>
         <ul style="list-style: none;">
           <li>
-            <a asp-page="/Profile/User/ChangeUserName"><i class="fa fa-user-cog"></i> Change username</a>  
+            <a asp-page="/Profile/User/ChangeUserName">
+              <i class="fa fa-user-cog"></i> Change username
+            </a>  
           </li>
+          
           <li>
-            <a asp-page="/Profile/User/ChangePassword"><i class="fa fa-lock"></i> Change password</a> 
+            <a asp-page="/Profile/User/ChangePassword">
+              <i class="fa fa-lock"></i> Change password
+            </a> 
           </li>
         </ul>
       </nav>
