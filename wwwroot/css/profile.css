@@ -1,0 +1,8 @@
+.profile-layout{
+    display: flex;
+    width: 100%;
+    
+}
+.profile-layout__content{
+    padding-left: 25px;
+  }
