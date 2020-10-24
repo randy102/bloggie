@@ -1,6 +1,11 @@
 ﻿@page
-@model Bloggie.Pages.ChangeUserNameModel
+@model Bloggie.Pages.PersonalInformationModel
 @{
     Layout = "_ProfileLayout";
     ViewData["Title"] = "PersonalInformation";
 }
+<h1>Email: @Model.UserProfile.Email</h1>
+<h1>Role: @Model.UserProfile.Role</h1>
+<h1>FullName: @Model.UserProfile.FullName</h1>
+
+
