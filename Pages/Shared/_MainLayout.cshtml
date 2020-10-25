@@ -1,103 +1,94 @@
 ﻿@using Microsoft.AspNetCore.Http
 
 @{
-    string pageUrl = Context.Request.Path;
-    string FullName = Context.Session.GetString("FullName");
+  string pageUrl = Context.Request.Path;
 }
 
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - Bloggie</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/lib/fontawesome-free-5.15.1-web/css/all.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
-    @RenderSection("Styles", required: false)
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@ViewData["Title"] - Bloggie</title>
+  <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="~/lib/fontawesome-free-5.15.1-web/css/all.css" />
+  <link rel="stylesheet" href="~/css/site.css" />
+  @RenderSection("Styles", required: false)
 </head>
 
-<body>
-    <header>
-        <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-page="/Index">Bloggie</a>
+<body class="d-flex flex-column min-vh-100">
 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bloggie-navbar"
-                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div id="bloggie-navbar" class="collapse navbar-collapse">
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-page="/Index">Home</a>
-                        </li>
-                    </ul>
-
-                    <form class="form-inline">
-                        @if (!User.Identity.IsAuthenticated)
-                        {
-                            <a class="btn btn-primary mr-2" asp-page="/Login">Login</a>
-                            <a class="btn btn-outline-primary" asp-page="/Register">Register</a>
-                        }
-                        else
-                        {
-                            <div class="dropdown">
-                                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                    @FullName
-                                </a>
-                                <div class="dropdown-menu dropdown-menu-right">
-                                    <a class="dropdown-item @(pageUrl == "/Profile/User/PersonalInformation" ? "active" : "")"
-    asp-page="/Profile/User/PersonalInformation">
-                                        <i class="fa fa-user"></i> Personal information
-                                    </a>
-
-                                    @if (User.IsInRole("Admin"))
-                                    {
-                                        <a class="dropdown-item @(pageUrl == "/Admin/User/ListUser" ? "active" : "")"
-        asp-page="/Admin/User/ListUser">
-                                            <i class="fa fa-cog"></i> Management
-                                        </a>
-                                    }
-                                    else if (User.IsInRole("Moderator"))
-                                    {
-                                        <a class="dropdown-item @(pageUrl == "" ? "active" : "")">
-                                            <i class="fa fa-cog"></i> Article management
-                                        </a>
-                                    }
-
-                                    <a class="dropdown-item" asp-page="/Logout">
-                                        <i class="fa fa-sign-out-alt"></i> Logout
-                                    </a>
-                                </div>
-                            </div>
-                        }
-                    </form>
-                </div>
-            </div>
-        </nav>
-    </header>
-
+  <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+      <a class="navbar-brand" asp-page="/Index">Bloggie</a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bloggie-navbar"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div id="bloggie-navbar" class="collapse navbar-collapse">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link text-dark" asp-page="/Index">Home</a>
+          </li>
+        </ul>
+
+        <form class="form-inline">
+          @if (!User.Identity.IsAuthenticated)
+          {
+            <a class="btn btn-primary mr-2" asp-page="/Login">Login</a>
+            <a class="btn btn-outline-primary" asp-page="/Register">Register</a>
+          }
+          else
+          {
+            <div class="dropdown">
+              <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+                @(Context.Session.GetString("FullName"))
+              </a>
+              <div class="dropdown-menu dropdown-menu-right">
+                <a class="dropdown-item @(pageUrl == "/Profile/User/PersonalInformation" ? "active" : "")" asp-page="/Profile/User/PersonalInformation">
+                  <i class="fa fa-user"></i> Profile
+                </a>
+
+                @if (User.IsInRole("Admin")) {
+                  <a class="dropdown-item @(pageUrl == "/Admin/User/ListUser" ? "active" : "")" asp-page="/Admin/User/ListUser">
+                    <i class="fa fa-cog"></i> Admin management
+                  </a>
+                } else if (User.IsInRole("Moderator")) {
+                  <a class="dropdown-item @(pageUrl == "" ? "active" : "")">
+                    <i class="fa fa-cog"></i> Post management
+                  </a>
+                }
+
+                <a class="dropdown-item" asp-page="/Logout">
+                  <i class="fa fa-sign-out-alt"></i> Logout
+                </a>
+              </div>
+            </div>
+          }
+        </form>
+      </div>
     </div>
+  </nav>
 
-    <footer class="border-top footer text-muted box-shadow mt-3 bg-white">
-        <div class="container">
-            &copy; 2020 - Bloggie - <a asp-area="" asp-page="/Privacy">Privacy</a>
-        </div>
-    </footer>
+  <main role="main" class="container d-flex flex-grow-1 overflow-auto">
+    @RenderBody()
+  </main>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/lib/fontawesome-free-5.15.1-web/js/all.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+  <footer class="container-fluid flex-grow-0 flex-shrink-1 border-top text-muted box-shadow bg-white mt-3 py-3">
+    <div class="container">
+      &copy; 2020 - Bloggie - <a asp-area="" asp-page="/Privacy">Privacy</a>
+    </div>
+  </footer>
 
-    @RenderSection("Scripts", required: false)
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/lib/fontawesome-free-5.15.1-web/js/all.js"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
+
+  @RenderSection("Scripts", required: false)
 </body>
 
 </html>
