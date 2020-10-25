@@ -7,10 +7,8 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Bloggie.Data;
 using System.Security.Claims;
 
-namespace Bloggie.Pages
-{
-  public class ChangePasswordModel : PageModel
-  {
+namespace Bloggie.Pages {
+  public class ChangePasswordModel : PageModel {
     private BloggieContext db;
     public ChangePasswordModel(BloggieContext db) => this.db = db;
 
@@ -22,12 +20,10 @@ namespace Bloggie.Pages
 
     public string ErrorMessage { get; set; }
 
-    public IActionResult OnPost()
-    {
+    public IActionResult OnPost() {
       var userEmail = HttpContext.User.FindFirst(ClaimTypes.Email).Value;
       var toUpdate = db.Users.Where(u => u.Email == userEmail).First();
-      try
-      {
+      try {
         if (toUpdate.Password != Utils.Hash.GetHashString(OldPassword))
           throw new Exception("Password Incorrect!");
 
@@ -35,16 +31,10 @@ namespace Bloggie.Pages
         db.Users.Update(toUpdate);
         db.SaveChanges();
         return RedirectToPage("PersonalInformation");
-      }
-      catch (Exception error)
-      {
+      } catch (Exception error) {
         ErrorMessage = error.Message;
         return Page();
       }
-
-
-
-
     }
   }
 }

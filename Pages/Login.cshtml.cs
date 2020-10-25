@@ -11,6 +11,8 @@ using Bloggie.Utils;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
 using Bloggie.Data;
+using Microsoft.AspNetCore.Http;
+
 namespace Bloggie.Pages {
   public class LoginModel : PageModel {
     private readonly BloggieContext db;
@@ -37,6 +39,11 @@ namespace Bloggie.Pages {
             };
           var claimsIdentity = new ClaimsIdentity(claims, CookieAuthenticationDefaults.AuthenticationScheme);
           await HttpContext.SignInAsync(CookieAuthenticationDefaults.AuthenticationScheme, new ClaimsPrincipal(claimsIdentity));
+
+          HttpContext.Session.SetString("FullName", existed.FullName);
+          HttpContext.Session.SetString("Role", existed.Role.ToString());
+          HttpContext.Session.SetString("Email", existed.Email);
+
           return RedirectToPage("/Index");
         }
       }

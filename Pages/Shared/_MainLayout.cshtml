@@ -1,7 +1,8 @@
-﻿@using System.Security.Claims
+﻿@using Microsoft.AspNetCore.Http
 
 @{
     string pageUrl = Context.Request.Path;
+    string FullName = Context.Session.GetString("FullName");
 }
 
 <!DOCTYPE html>
@@ -39,13 +40,13 @@
                         @if (!User.Identity.IsAuthenticated)
                         {
                             <a class="btn btn-primary mr-2" asp-page="/Login">Login</a>
-                            <a class="btn btn-outline-primary   " asp-page="/Register">Register</a>
+                            <a class="btn btn-outline-primary" asp-page="/Register">Register</a>
                         }
                         else
                         {
                             <div class="dropdown">
                                 <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                    @User.FindFirst(ClaimTypes.Name).Value
+                                    @FullName
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a class="dropdown-item @(pageUrl == "/Profile/User/PersonalInformation" ? "active" : "")"
