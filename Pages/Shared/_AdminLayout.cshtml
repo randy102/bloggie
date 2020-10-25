@@ -17,17 +17,33 @@
         new {
           Url = "ListUser",
           Text = "User list",
-          Icon = "user-friends"
+          Icon = "users"
         },
         new {
           Url = "CreateUser",
           Text = "Create user",
-          Icon = "user-plus"
+          Icon = "plus"
+        },
+      }
+    },
+    new {
+      BaseUrl = "/Admin/Category",
+      Label = "Category",
+      Items = new [] {
+        new {
+          Url = "ListCategory",
+          Text = "Category list",
+          Icon = "tags"
         },
         new {
-          Url = "UpdateUser",
-          Text = "Update user",
-          Icon = "user-edit"
+          Url = "CreateCategory",
+          Text = "Create category",
+          Icon = "plus",
+        },
+        new {
+          Url = "UpdateCategory",
+          Text = "Update category",
+          Icon = "edit",
         },
       }
     }
