@@ -1,22 +1,3 @@
-.admin-layout {
-  display: flex;
-  width: 100%;
-  align-items: stretch;
-}
-
-.admin-layout__sidebar {
-  width: 150px;
-  min-height: 100%;
-}
-
-.admin-layout__content {
-  padding-left: 20px;
-}
-
-/* Sidebar dropdown container */
-.sidebar-dropdown {
-}
-
 /* Sidebar dropdown label */
 .sidebar-dropdown__label {
   position: relative;

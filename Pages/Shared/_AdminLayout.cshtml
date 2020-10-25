@@ -50,10 +50,10 @@
   };
 }
 
-<div class="admin-layout">
+<div class="row w-100 my-n3 mx-0">
   <!-- Sidebar -->
-  <nav class="admin-layout__sidebar">
-    <ul class="list-unstyled components">
+  <nav class="h-100 border-right bg-light p-3" style="width: 200px">
+    <ul class="list-unstyled">
       @foreach (var dropdown in dropdowns)
       {
         var dropdownIsActive = pageUrl.StartsWith(dropdown.BaseUrl);
@@ -81,7 +81,7 @@
 
               <li class="sidebar-dropdown__item">
                 <a href="@url" class="@(url == pageUrl ? "active" : "")">
-                  <i class="fas fa-@(item.Icon)"></i>
+                  <i class="fas fa-@(item.Icon) fa-fw"></i>
                   <span>@(item.Text)</span>
                 </a>
               </li>
@@ -93,8 +93,8 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="admin-layout__content">
-      @RenderBody()
+  <div class="col pt-3 pr-0 pb-3 pl-3">
+    @RenderBody()
   </div>
 </div>    
 
