@@ -2,3 +2,7 @@
 @model Bloggie.Pages.ListCategoryModel
 @{
 }
+@foreach (var cate in Model.Categories)
+{
+    <li>@cate.Name</li>
+}

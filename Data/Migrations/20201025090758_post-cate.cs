@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Bloggie.Data.Migrations
 {
-    public partial class postcategoryseed : Migration
+    public partial class postcate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -69,12 +69,12 @@ namespace Bloggie.Data.Migrations
             migrationBuilder.InsertData(
                 table: "Posts",
                 columns: new[] { "Id", "AuthorId", "CategoryId", "Content", "CreatedAt", "Img", "State", "Title" },
-                values: new object[] { 1, 2, 1, "The [ForeignKey] attribute overrides the default convention for a foreign key It allows us to specify the foreign key property in the dependent entity whose name does not match with the primary key property of the principal entity.", new DateTime(2020, 10, 25, 8, 18, 50, 509, DateTimeKind.Local).AddTicks(908), null, 0, "The [ForeignKey(name)] attribute" });
+                values: new object[] { 1, 2, 1, "The [ForeignKey] attribute overrides the default convention for a foreign key It allows us to specify the foreign key property in the dependent entity whose name does not match with the primary key property of the principal entity.", new DateTime(2020, 10, 25, 9, 7, 57, 784, DateTimeKind.Local).AddTicks(3277), null, 0, "The [ForeignKey(name)] attribute" });
 
             migrationBuilder.InsertData(
                 table: "Posts",
                 columns: new[] { "Id", "AuthorId", "CategoryId", "Content", "CreatedAt", "Img", "State", "Title" },
-                values: new object[] { 2, 1, 3, "In the above example, the [ForeignKey] attribute is applied on the StandardRefId and specified in the name of the navigation property Standard. ", new DateTime(2020, 10, 25, 8, 18, 50, 509, DateTimeKind.Local).AddTicks(1540), null, 1, "Learn Entity Framework" });
+                values: new object[] { 2, 1, 3, "In the above example, the [ForeignKey] attribute is applied on the StandardRefId and specified in the name of the navigation property Standard. ", new DateTime(2020, 10, 25, 9, 7, 57, 784, DateTimeKind.Local).AddTicks(3910), null, 1, "Learn Entity Framework" });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Posts_AuthorId",

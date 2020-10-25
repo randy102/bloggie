@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Bloggie.Data.Migrations
 {
     [DbContext(typeof(BloggieContext))]
-    [Migration("20201025081851_post-category-seed")]
-    partial class postcategoryseed
+    [Migration("20201025090758_post-cate")]
+    partial class postcate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -91,7 +91,7 @@ namespace Bloggie.Data.Migrations
                             AuthorId = 2,
                             CategoryId = 1,
                             Content = "The [ForeignKey] attribute overrides the default convention for a foreign key It allows us to specify the foreign key property in the dependent entity whose name does not match with the primary key property of the principal entity.",
-                            CreatedAt = new DateTime(2020, 10, 25, 8, 18, 50, 509, DateTimeKind.Local).AddTicks(908),
+                            CreatedAt = new DateTime(2020, 10, 25, 9, 7, 57, 784, DateTimeKind.Local).AddTicks(3277),
                             State = 0,
                             Title = "The [ForeignKey(name)] attribute"
                         },
@@ -101,7 +101,7 @@ namespace Bloggie.Data.Migrations
                             AuthorId = 1,
                             CategoryId = 3,
                             Content = "In the above example, the [ForeignKey] attribute is applied on the StandardRefId and specified in the name of the navigation property Standard. ",
-                            CreatedAt = new DateTime(2020, 10, 25, 8, 18, 50, 509, DateTimeKind.Local).AddTicks(1540),
+                            CreatedAt = new DateTime(2020, 10, 25, 9, 7, 57, 784, DateTimeKind.Local).AddTicks(3910),
                             State = 1,
                             Title = "Learn Entity Framework"
                         });

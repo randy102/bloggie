@@ -17,7 +17,7 @@ namespace Bloggie.Models {
 
     public UserRole Role { get; set; }
 
-    public ICollection<Post> Posts {get; set;}
+    public virtual ICollection<Post> Posts {get; set;}
   }
 
   public enum UserRole {
