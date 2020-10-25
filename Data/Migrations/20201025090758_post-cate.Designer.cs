@@ -3,14 +3,16 @@ using System;
 using Bloggie.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Bloggie.Data.Migrations
 {
     [DbContext(typeof(BloggieContext))]
-    partial class BloggieContextModelSnapshot : ModelSnapshot
+    [Migration("20201025090758_post-cate")]
+    partial class postcate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

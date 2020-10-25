@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using System.Collections.Generic;
 
 namespace Bloggie.Models {
   public class User {
@@ -15,6 +16,8 @@ namespace Bloggie.Models {
     public bool Active { get; set; } = true;
 
     public UserRole Role { get; set; }
+
+    public virtual List<Post> Posts {get; set;} = new List<Post>();
   }
 
   public enum UserRole {
