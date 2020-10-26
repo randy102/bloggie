@@ -1,21 +1,4 @@
-﻿:root {
-  --footer-height: 60px;
-}
-
-html {
+﻿html {
   position: relative;
   min-height: 100%;
-}
-
-body {
-  margin-bottom: var(--footer-height);
-}
-
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: var(--footer-height);
-  white-space: nowrap;
-  line-height: var(--footer-height);
 }
