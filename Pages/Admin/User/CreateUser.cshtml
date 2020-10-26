@@ -4,7 +4,9 @@
 @{
     Layout = "_AdminLayout";
 }
-
+<div class="text-danger">
+    @Model.statusMsg
+</div> 
 <div class="container">
     <h2>Create Account</h2>
     <form method="post" class="needs-validation" novalidate>

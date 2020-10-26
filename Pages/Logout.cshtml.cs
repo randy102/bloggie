@@ -22,7 +22,7 @@ namespace Bloggie.Pages
         } catch(Exception error){
             ErrorMessage = error.Message;
         } 
-        return Page();
+        return Redirect("./Index");
     }
   }
 }

@@ -14,11 +14,11 @@ namespace Bloggie.Pages.Admin {
 
     //Lời nhắn trạng thái
     //không bắt buộc có
-    public string statusMsg { get; set; } = "init";
+    public string statusMsg { get; set; } = string.Empty;
     public IActionResult OnPost() {
       //Kiểm tra email
       //Không phân biệt hoa thường 
-      bool isExist = (db.Users.Where(u => u.Email.Equals(User.Email))).ToList().Any();
+      bool isExist = (db.Users.Where(u => u.Email.Equals(User.Email.ToLower()))).ToList().Any();
 
       //Input hợp lệ và email chưa tồn tại
       if (ModelState.IsValid && !isExist) {
@@ -34,8 +34,8 @@ namespace Bloggie.Pages.Admin {
         //Lưu thay đổi 
         db.SaveChanges();
 
-        //Chuyển hướng đến trang mặc định
-        return Redirect("../../");
+        //Chuyển hướng đến trang ListUser
+        return Redirect("./ListUser");
       } else {
         //Email đã tồn tại => tạo tài khoản thất bại
         //Lời nhắn trạng thái

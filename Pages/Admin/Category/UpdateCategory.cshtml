@@ -2,3 +2,17 @@
 @model Bloggie.Pages.UpdateCategoryModel
 @{
 }
+Categories
+<div class="text-danger">
+    @Model.statusMsg
+</div> 
+<table>
+    <tr>
+        <td>
+            <form action="" method="post">
+                <input asp-for="@Model.category.Id" hidden>
+                Input name <input type="text" asp-for="@Model.category.Name" required>
+                <input type="submit" value="Submit">
+            </form>
+        </td>
+</table>
