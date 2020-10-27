@@ -18,7 +18,7 @@ namespace Bloggie.Pages {
 
     //Lời nhắn trạng thái
     //không bắt buộc có
-    public string statusMsg { get; set; } = String.Empty;
+    public string ErrorMessage { get; set; }
     public IActionResult OnPost() {
       //Định dạng chuỗi
       category.Name = FormatString.Trim_MultiSpaces_Title(category.Name);
@@ -38,7 +38,7 @@ namespace Bloggie.Pages {
       } else {
         //Tên thể loại đã tồn tại => tạo thất bại
         //Lời nhắn trạng thái
-        statusMsg = "Not successful";
+        ErrorMessage = category.Name + " existed";
 
         //Trả về trang hiện tại( trang tạo thể loại)
         return Page();

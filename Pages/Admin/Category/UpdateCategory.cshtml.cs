@@ -13,16 +13,15 @@ namespace Bloggie.Pages {
 
     private BloggieContext db;
     public UpdateCategoryModel(BloggieContext db) => this.db = db;
-    public string statusMsg { get; set; } = string.Empty;
+    public string ErrorMessage { get; set; }
 
     [BindProperty(SupportsGet = true)]
     public int id { get; set; }
-
-
     [BindProperty]
-    public Category category { get; set; } = null;
+    public String newName { get; set; }
+    public Category category { get; set; }
     public IActionResult OnGet() {
-      category = (db.Categories.Where(c => c.Id == id)).FirstOrDefault();
+      category = db.Categories.Find(id);
       if (category == null) {
         return Redirect("./ListCategory");
       } else {
@@ -30,12 +29,19 @@ namespace Bloggie.Pages {
       }
     }
     public IActionResult OnPost() {
+      category = db.Categories.Find(id);
       //Định dạng chuỗi
-      category.Name = FormatString.Trim_MultiSpaces_Title(category.Name);
+      newName = FormatString.Trim_MultiSpaces_Title(newName);
+      if (category.Name.Equals(newName)) {
+        ErrorMessage = "Enter new name";
+        return Page();
+      }
       //Kiểm tra tên đã được sử dụng hay chưa
-      bool isExist = (db.Categories.Where(c => c.Name.Equals(category.Name))).ToList().Any();
+      bool isExist = (db.Categories.Where(c => c.Name.Equals(newName))).ToList().Any();
       //Input hợp lệ và tên thể loại chưa tồn tại
       if (ModelState.IsValid && !isExist) {
+        //Thay đổi tên
+        category.Name = newName;
         //Cập nhật thay đổi
         db.Update(category);
         //Lưu thay đổi 
@@ -44,8 +50,8 @@ namespace Bloggie.Pages {
         return Redirect("./ListCategory");
       } else {
         //Tên thể loại đã tồn tại => tạo thất bại
-        //Lời nhắn trạng thái
-        statusMsg = "Not successful";
+        //Lời nhắn 
+        ErrorMessage = newName + " existed";
         //Trả về trang hiện tại( trang cập nhật thể loại)
         return Page();
       }

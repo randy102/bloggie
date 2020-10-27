@@ -14,7 +14,7 @@ namespace Bloggie.Pages.Admin {
 
     //Lời nhắn trạng thái
     //không bắt buộc có
-    public string statusMsg { get; set; } = string.Empty;
+    public string ErrorMessage { get; set; } = string.Empty;
     public IActionResult OnPost() {
       //Kiểm tra email
       //Không phân biệt hoa thường 
@@ -39,7 +39,7 @@ namespace Bloggie.Pages.Admin {
       } else {
         //Email đã tồn tại => tạo tài khoản thất bại
         //Lời nhắn trạng thái
-        statusMsg = "Not successful";
+        ErrorMessage = User.Email + " existed";
 
         //Trả về trang hiện tại( trang tạo tài khoản)
         return Page();
