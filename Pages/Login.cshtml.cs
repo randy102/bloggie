@@ -20,11 +20,11 @@ namespace Bloggie.Pages {
     public LoginModel(BloggieContext db) => this.db = db;
 
     [BindProperty, DataType(DataType.EmailAddress)]
-    [Required(ErrorMessage = "Email is required.")]
+    [Required(ErrorMessage = "Please enter your email.")]
     public string Email { get; set; }
 
     [BindProperty, DataType(DataType.Password)]
-    [Required(ErrorMessage = "Password is required.")]
+    [Required(ErrorMessage = "Please enter your password.")]
     public string Password { get; set; }
 
     public string ErrorMessage { get; set; }

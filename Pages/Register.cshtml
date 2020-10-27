@@ -2,64 +2,87 @@
 @model Bloggie.Pages.RegisterModel
 
 @{
-    Layout = "_MainLayout";
+  Layout = "_MainLayout";
 }
 
 @section Scripts{
+	<partial name="_ValidationScriptsPartial" />
 	<script src="~/js/Register.js"></script>
 }
 
-<div class="container">
-	<div class="col-sm-10" style="width: 600px;margin-left: 250px;margin-top: 50px;">
-		<div class="jumbotron">
-			<div class="form-group" style="margin-top: -50px">
-				<h1 style="margin-left: 186px;">
-					Register
-				</h1>
+<div class="row no-gutters justify-content-center align-self-center mx-auto">
+	<div style="width: 400px">
+		<div class="display-4 text-center">
+			Register
+		</div>
+
+		<hr class="my-4">
+
+		<form method="POST" class="needs-validation" novalidate>
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text bg-white">
+							<i class="fas fa-envelope fa-fw text-primary"></i>
+						</div>
+					</div>
+
+					<input required type="email" class="form-control rounded-right" asp-for="Email" name="Email" placeholder="Email">
+
+					<div class="invalid-feedback">
+						<span asp-validation-for="Email"></span>
+					</div>
+				</div>
 			</div>
 
-			<hr>
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text bg-white">
+							<i class="fas fa-user fa-fw text-primary"></i>
+						</div>
+					</div>
 
-			<form  method="POST" onsubmit="return checkPw(this)" class="needs-validation form-horizontal" style="margin-left: 50px;" novalidate>
-				<div class="form-group input-group">
-					<span class="input-group-prepend">
-						<span class="input-group-img"><i class="fa fa-envelope" style="font-size: 30px; margin-top: 5px; margin-right:6px;"></i></span>
-					</span>
-					<input asp-for="Email" class="form-control" type="email"  placeholder="Email..." style="border-radius: 20px;" required>
-					<div class="invalid-feedback">Enter the correct email format! Do not leave blank!</div>
+					<input required type="text" class="form-control rounded-right" asp-for="FullName" name="FullName" placeholder="Full name">
+
+					<div class="invalid-feedback">
+						<span asp-validation-for="FullName"></span>
+					</div>
 				</div>
-				
-				<div class="form-group input-group">
-					<span class="input-group-prepend">
-						<span class="input-group-img"><i class="fa fa-user" style="font-size: 35px; margin-right:6px;"></i></span>
-					</span>
-					<input asp-for="FullName" class="form-control" placeholder="Fullname..." style="border-radius: 20px;" required>
-					<div class="invalid-feedback">Full name cannot be left blank!</div>
+			</div>
+
+			<div class="form-group">
+				<div class="input-group">
+					<div class="input-group-prepend">
+						<div class="input-group-text bg-white">
+							<i class="fas fa-lock fa-fw text-primary"></i>
+						</div>
+					</div>
+
+					<input required type="password" class="form-control rounded-right" asp-for="Password" name="Password" placeholder="Password">
+					
+					<div class="invalid-feedback">
+						<span asp-validation-for="Password"></span>
+					</div>
 				</div>
+			</div>
 
-				<div class="form-group input-group">
-					<span class="input-group-addon">
-						<span class="input-group-img"><i class="fa fa-lock" style="font-size: 36px; margin-top: 1px; margin-right:6px;"></i></span>
-					</span>
-					<input asp-for="Password" type="password" class="form-control" id = "password0" placeholder="Password..." style="border-radius: 20px;" required>
-					<div class="invalid-feedback">Password can not be blank!</div>
+			@if (@Model.ErrorMessage != null) {
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					<strong>Error:</strong> @Model.ErrorMessage
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<i class="fas fa-times"></i>
+					</button>
 				</div>
+			}
 
-				<div class="text-success">
-					@Model.Message
-				</div>
-
-				<div class="form-group">
-					<button class="btn btn-primary" style="width: 200px; margin-left: 120px; border-radius: 16px;">Sign up</button>
-				</div>
-
-            	<div class="form-group" style="margin-left: 135px;">
-                    Have an account?
-					<a asp-page="/Login">Login</a>
-				</div>
-
-			</form>
-
-		</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-lg btn-block">Register</button>
+			</div>
+			
+			<div class="text-center">
+				Already have an account? <a asp-page="/Login">Login</a>
+			</div>
+		</form>
 	</div>
 </div>

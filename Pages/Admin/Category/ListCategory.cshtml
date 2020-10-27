@@ -1,23 +1,23 @@
 ﻿@page
 @model Bloggie.Pages.ListCategoryModel
 @{
+  Layout = "_AdminLayout";
 }
+
 <table class="table">
   <tr>
     <th>Category</th>
     <th>Posts</th>
   </tr>
 
-@foreach (var cate in Model.Categories)
-{
+  @foreach (var cate in Model.Categories){
     <tr>
       <td>@cate.Name</td>
       <td>
-      @foreach (var p in cate.Posts)
-      {
-          <li>@p.Title</li>
+      @foreach (var p in cate.Posts) {
+        <li>@p.Title</li>
       }
       </td>
     </tr>
-}
+  }
 </table>

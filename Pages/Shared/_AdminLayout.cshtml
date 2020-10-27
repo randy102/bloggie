@@ -13,11 +13,12 @@
     new {
       BaseUrl = "/Admin/User",
       Label = "User",
+      Icon = "user-friends",
       Items = new [] {
         new {
           Url = "ListUser",
           Text = "User list",
-          Icon = "users"
+          Icon = "list"
         },
         new {
           Url = "CreateUser",
@@ -29,21 +30,17 @@
     new {
       BaseUrl = "/Admin/Category",
       Label = "Category",
+      Icon = "tags",
       Items = new [] {
         new {
           Url = "ListCategory",
           Text = "Category list",
-          Icon = "tags"
+          Icon = "list"
         },
         new {
           Url = "CreateCategory",
           Text = "Create category",
           Icon = "plus",
-        },
-        new {
-          Url = "UpdateCategory",
-          Text = "Update category",
-          Icon = "edit",
         },
       }
     }
@@ -54,8 +51,7 @@
   <!-- Sidebar -->
   <nav class="h-100 border-right bg-light p-3" style="width: 200px">
     <ul class="list-unstyled">
-      @foreach (var dropdown in dropdowns)
-      {
+      @foreach (var dropdown in dropdowns) {
         var dropdownIsActive = pageUrl.StartsWith(dropdown.BaseUrl);
         var activeLabelClass = dropdownIsActive ? "active" : "";
         var showDropdownClass = dropdownIsActive ? "show" : "";
@@ -68,15 +64,14 @@
             aria-expanded="false"
             class="dropdown-toggle sidebar-dropdown__label @activeLabelClass"
           >
-            @(dropdown.Label)
+            <i class="fas fa-@(dropdown.Icon) fa-fw"></i> @(dropdown.Label)
           </a>
 
           <ul
             class="collapse list-unstyled sidebar-dropdown__items @showDropdownClass"
             id="@randomId"
           >
-            @foreach (var item in dropdown.Items)
-            {
+            @foreach (var item in dropdown.Items) {
               var url = dropdown.BaseUrl + "/" + item.Url;
 
               <li class="sidebar-dropdown__item">
@@ -96,7 +91,15 @@
   <div class="col pt-3 pr-0 pb-3 pl-3">
     @RenderBody()
   </div>
-</div>    
+</div>
+
+<script>
+  $(document).ready(function() {
+    $('#sidebarCollapse').on('click', function() {
+      $('#sidebar').toggleClass('active');
+    });
+  });
+</script>
 
 
 
