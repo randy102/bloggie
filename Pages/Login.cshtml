@@ -44,7 +44,7 @@
 						</div>
 					</div>
 
-					<input required type="password" class="form-control rounded-right" asp-for="Password" placeholder="Password">
+					<input required type="password" class="form-control rounded-right" asp-for="Password" name="Password" placeholder="Password">
 					
 					<div class="invalid-feedback">
 						<span asp-validation-for="Password"></span>
@@ -53,8 +53,11 @@
 			</div>
 
 			@if (@Model.ErrorMessage != null) {
-				<div class="alert alert-danger" role="alert">
-					@Model.ErrorMessage
+				<div class="alert alert-danger alert-dismissible fade show" role="alert">
+					<strong>Error:</strong> @Model.ErrorMessage
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<i class="fas fa-times"></i>
+					</button>
 				</div>
 			}
 

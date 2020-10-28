@@ -9,41 +9,42 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Bloggie.Data;
 using Bloggie.Models;
-namespace Bloggie.Pages
-{
-  public class RegisterModel : PageModel
-  {
+namespace Bloggie.Pages {
+  public class RegisterModel : PageModel {
     private readonly BloggieContext db;
+
     public RegisterModel(BloggieContext db) => this.db = db;
 
-    public string Message { get; set; }
-
     [BindProperty, DataType(DataType.EmailAddress)]
+    [Required(ErrorMessage = "Please enter your email.")]
     public string Email { get; set; }
 
     [BindProperty]
+    [Required(ErrorMessage = "Please enter your name.")]
     public string FullName { get; set; }
 
     [BindProperty, DataType(DataType.Password)]
+    [Required(ErrorMessage = "Please enter your password.")]
     public string Password { get; set; }
 
-    public async Task<IActionResult> OnPost()
-    {
-      try
-      {
+    public string ErrorMessage { get; set; }
+
+    public async Task<IActionResult> OnPost() {
+      if (!ModelState.IsValid) {
+        return Page();
+      }
+
+      try {
         var existed = await db.Users.Where(user => user.Email == Email).FirstOrDefaultAsync();
-        if (existed != null) throw new Exception("Email existed!");
+        if (existed != null) throw new Exception("Email existed.");
 
         var user = new User { Email = Email, FullName = FullName, Password = Hash.GetHashString(Password), Role = UserRole.Writer, Active = true };
         await db.Users.AddAsync(user);
         await db.SaveChangesAsync();
 
-        Message = "Success!";
         return Page();
-      }
-      catch (Exception error)
-      {
-        Message = error.Message;
+      } catch (Exception error) {
+        ErrorMessage = error.Message;
         return Page();
       }
 
