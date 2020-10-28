@@ -5,44 +5,45 @@
    Layout = "_AdminLayout";
 }
 
-
-<h2>User List</h2>
-<table class="table list-user-table " style="text-align: center;">
-   <tr>
-      <th>Email</th>
-      <th>FullName</th>
-      <th>Role</th>
-      <th>Name of Role</th>
-      <th>Active</th>
-      <th>Status</th>
-   </tr>
-
-   @foreach (var user in Model.Users)
-   {
+<div class="container">
+   <h2>User List</h2>
+   <table class="table list-user-table " style="text-align: center;">
       <tr>
-         <td>@user.Email</td>
-
-         <td>@user.FullName</td>
-
-         <td>
-            <form asp-page-handler="ChangeRole" method="post">
-               <input type="hidden" name="idChangeRole" value="@user.Id">
-               <button class="form-control" type="submit" style="border-radius: 15px;">Change Role</button>
-            </form>
-         </td>
-
-         <td>@user.Role</td>
-
-         <td>
-            <form asp-page-handler="ChangeActive" method="post">
-               <input type="hidden" name="idChangeActive" value="@user.Id">
-               <button class="form-control" type="submit" style="border-radius: 15px;">Change Active</button>
-            </form>
-         </td>
-
-         <td>@user.Active</td>
+         <th>Email</th>
+         <th>FullName</th>
+         <th>Role</th>
+         <th>Name of Role</th>
+         <th>Active</th>
+         <th>Status</th>
       </tr>
-   }
-</table>
 
-<link rel="stylesheet" href="~/css/listUser.css">
+      @foreach (var user in Model.Users)
+      {
+         <tr>
+            <td>@user.Email</td>
+
+            <td>@user.FullName</td>
+
+            <td>
+               <form asp-page-handler="ChangeRole" method="post">
+                  <input type="hidden" name="idChangeRole" value="@user.Id">
+                  <button class="form-control" type="submit" style="border-radius: 15px;">Change Role</button>
+               </form>
+            </td>
+
+            <td>@user.Role</td>
+
+            <td>
+               <form asp-page-handler="ChangeActive" method="post">
+                  <input type="hidden" name="idChangeActive" value="@user.Id">
+                  <button class="form-control" type="submit" style="border-radius: 15px;">Change Active</button>
+               </form>
+            </td>
+
+            <td>@user.Active</td>
+         </tr>
+      }
+   </table>
+
+   <link rel="stylesheet" href="~/css/listUser.css">
+</div>

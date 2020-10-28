@@ -14,7 +14,7 @@ namespace Bloggie.Pages.Admin {
 
     //Lời nhắn trạng thái
     //không bắt buộc có
-    public string ErrorMessage { get; set; } = string.Empty;
+    public string ErrorMessage { get; set; }
     public IActionResult OnPost() {
       //Kiểm tra email
       //Không phân biệt hoa thường 

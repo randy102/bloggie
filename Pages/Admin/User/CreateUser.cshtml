@@ -4,9 +4,7 @@
 @{
   Layout = "_AdminLayout";
 }
-<div class="text-danger">
-  @Model.ErrorMessage
-</div>
+
 <div class="container">
   <h2>Create Account</h2>
   <form method="post" class="needs-validation" novalidate>
@@ -56,6 +54,15 @@ style="width: 150px; height: 35px; border-color:	#C0C0C0; outline: none; border-
         }
         </select>
       </div>
+
+      @if (@Model.ErrorMessage != null) {
+				<div class="alert alert-danger alert-dismissible fade show" role="alert" style="border-radius: 10px;">
+					<strong>Error:</strong> @Model.ErrorMessage
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+						<i class="fas fa-times"></i>
+					</button>
+				</div>
+			}
 
       <button type="submit" class="btn btn-primary" style="border-radius: 10px;">
         Create

@@ -5,6 +5,7 @@ using Bloggie.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using bloggie.Utils;
+using System.ComponentModel.DataAnnotations;
 
 namespace Bloggie.Pages {
   public class CreateCategoryModel : PageModel {
@@ -14,12 +15,16 @@ namespace Bloggie.Pages {
 
     //Đối tượng dùng để ánh xạ thông tin từ form input
     [BindProperty]
+    [Required(ErrorMessage= "Category name is required.")]
     public string newName { get; set; }
 
     //Lời nhắn trạng thái
     //không bắt buộc có
     public string ErrorMessage { get; set; }
     public IActionResult OnPost() {
+      if (!ModelState.IsValid) {
+        return Page();
+      }
       //Định dạng chuỗi
       newName = FormatString.Trim_MultiSpaces_Title(newName);
       //Kiểm tra tên thể loại đã tồn tại hay chưa

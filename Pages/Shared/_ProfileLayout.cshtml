@@ -8,7 +8,7 @@
   Layout="_MainLayout";
 }
 
-<div class="profile-layout">
+<div class="profile-layout row w-100 my-n3 mx-0">
     <div>
       <h4>@User.FindFirst(ClaimTypes.Name).Value</h4>
       <nav>
@@ -27,7 +27,7 @@
         </ul>
       </nav>
     </div>
-    <div class="profile-layout__content">
+    <div class="profile-layout__content col pt-3 pr-0 pb-3 pl-3">
           @RenderBody()
     </div>
 </div>

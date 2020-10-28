@@ -3,21 +3,23 @@
 @{
   Layout = "_AdminLayout";
 }
-
-<table class="table">
-  <tr>
-    <th>Category</th>
-    <th>Posts</th>
-  </tr>
-
-  @foreach (var cate in Model.Categories){
+<div class="container">
+  <h2>Category List</h2>
+  <table class="table list-user-table " style="text-align: center;">
     <tr>
-      <td>@cate.Name</td>
-      <td>
-      @foreach (var p in cate.Posts) {
-        <li>@p.Title</li>
-      }
-      </td>
+      <th>Category</th>
+      <th>Posts</th>
     </tr>
-  }
-</table>
+
+    @foreach (var cate in Model.Categories){
+      <tr>
+        <td>@cate.Name</td>
+        <td>
+        @foreach (var p in cate.Posts) {
+          <li class="list-unstyled">@p.Title</li>
+        }
+        </td>
+      </tr>
+    }
+  </table>
+</div>

@@ -9,6 +9,7 @@ using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using Bloggie.Data;
 using Bloggie.Models;
+
 namespace Bloggie.Pages {
   public class RegisterModel : PageModel {
     private readonly BloggieContext db;
@@ -47,8 +48,6 @@ namespace Bloggie.Pages {
         ErrorMessage = error.Message;
         return Page();
       }
-
-    }
   }
-
+}
 }
