@@ -26,7 +26,6 @@ namespace Bloggie.Pages {
     [BindProperty, DataType(DataType.Password)]
     [Required(ErrorMessage = "Password is required.")]
     public string Password { get; set; }
-
     public string ErrorMessage { get; set; }
 
     public async Task<IActionResult> OnPost() {

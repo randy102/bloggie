@@ -8,8 +8,9 @@ namespace Bloggie.Models {
     public int AuthorId {get; set;}
     public virtual User Author {get; set;}
 
-    public int CategoryId {get; set;}
+    public int CategoryId {get; set;}=1;
     public virtual Category Category {get; set;}
+    public string tags { get; set; }
 
     public string Title {get; set;}
     public string Img {get; set;}

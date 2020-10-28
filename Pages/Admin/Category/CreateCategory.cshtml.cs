@@ -14,19 +14,21 @@ namespace Bloggie.Pages {
 
     //Đối tượng dùng để ánh xạ thông tin từ form input
     [BindProperty]
-    public Category category { get; set; }
+    public string newName { get; set; }
 
     //Lời nhắn trạng thái
     //không bắt buộc có
     public string ErrorMessage { get; set; }
     public IActionResult OnPost() {
       //Định dạng chuỗi
-      category.Name = FormatString.Trim_MultiSpaces_Title(category.Name);
+      newName = FormatString.Trim_MultiSpaces_Title(newName);
       //Kiểm tra tên thể loại đã tồn tại hay chưa
-      bool isExist = (db.Categories.Where(c => c.Name.Equals(category.Name))).ToList().Any();
+      bool isExist = (db.Categories.Where(c => c.Name.Equals(newName))).ToList().Any();
 
       //Input hợp lệ và tên thể loại chưa tồn tại
       if (ModelState.IsValid && !isExist) {
+        Category category = new Category();
+        category.Name =newName;
         //Thêm vào bảng Categories
         db.Categories.Add(category);
 
@@ -38,7 +40,7 @@ namespace Bloggie.Pages {
       } else {
         //Tên thể loại đã tồn tại => tạo thất bại
         //Lời nhắn trạng thái
-        ErrorMessage = category.Name + " existed";
+        ErrorMessage = newName + " existed";
 
         //Trả về trang hiện tại( trang tạo thể loại)
         return Page();

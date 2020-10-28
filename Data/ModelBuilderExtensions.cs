@@ -42,15 +42,15 @@ namespace Bloggie.Data
       modelBuilder.Entity<Category>().HasData(
         new Category{
           Id = 1,
-          Name = "Công nghệ"
+          Name = "Công Nghệ"
         },
         new Category{
           Id = 2,
-          Name = "Giải trí"
+          Name = "Giải Trí"
         },
         new Category{
           Id = 3,
-          Name = "Bóng đá"
+          Name = "Bóng Đá"
         }
       );
 

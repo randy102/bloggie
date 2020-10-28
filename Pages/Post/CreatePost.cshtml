@@ -2,3 +2,14 @@
 @model Bloggie.Pages.CreatePostModel
 @{
 }
+Email: @Model.Author.Email <br>
+Full Name: @Model.Author.FullName <br>
+<form action="" method="post"><br>
+    @* <input asp-for="@Model.Author" hidden> *@
+    Title: <input asp-for="@Model.post.Title"> <br>
+    <select asp-for="@Model.categoryId" asp-items="@Model.categories">
+    </select> <br>
+    Content: <br>
+    <textarea asp-for="@Model.post.Content" cols="30" rows="10"></textarea> <br>
+    <input type="submit" value="Submit">
+</form>

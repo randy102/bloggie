@@ -14,7 +14,7 @@ namespace Bloggie.Data.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "3.1.8");
+                .HasAnnotation("ProductVersion", "3.1.9");
 
             modelBuilder.Entity("Bloggie.Models.Category", b =>
                 {
@@ -33,17 +33,17 @@ namespace Bloggie.Data.Migrations
                         new
                         {
                             Id = 1,
-                            Name = "Công nghệ"
+                            Name = "Công Nghệ"
                         },
                         new
                         {
                             Id = 2,
-                            Name = "Giải trí"
+                            Name = "Giải Trí"
                         },
                         new
                         {
                             Id = 3,
-                            Name = "Bóng đá"
+                            Name = "Bóng Đá"
                         });
                 });
 
@@ -74,6 +74,9 @@ namespace Bloggie.Data.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("tags")
+                        .HasColumnType("TEXT");
+
                     b.HasKey("Id");
 
                     b.HasIndex("AuthorId");
@@ -89,7 +92,7 @@ namespace Bloggie.Data.Migrations
                             AuthorId = 2,
                             CategoryId = 1,
                             Content = "The [ForeignKey] attribute overrides the default convention for a foreign key It allows us to specify the foreign key property in the dependent entity whose name does not match with the primary key property of the principal entity.",
-                            CreatedAt = new DateTime(2020, 10, 25, 9, 7, 57, 784, DateTimeKind.Local).AddTicks(3277),
+                            CreatedAt = new DateTime(2020, 10, 28, 16, 41, 39, 79, DateTimeKind.Local).AddTicks(9556),
                             State = 0,
                             Title = "The [ForeignKey(name)] attribute"
                         },
@@ -99,7 +102,7 @@ namespace Bloggie.Data.Migrations
                             AuthorId = 1,
                             CategoryId = 3,
                             Content = "In the above example, the [ForeignKey] attribute is applied on the StandardRefId and specified in the name of the navigation property Standard. ",
-                            CreatedAt = new DateTime(2020, 10, 25, 9, 7, 57, 784, DateTimeKind.Local).AddTicks(3910),
+                            CreatedAt = new DateTime(2020, 10, 28, 16, 41, 39, 81, DateTimeKind.Local).AddTicks(497),
                             State = 1,
                             Title = "Learn Entity Framework"
                         });
