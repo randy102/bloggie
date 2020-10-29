@@ -1,11 +1,14 @@
 @section Styles {
   <partial name="_ValidationScriptsPartial" />
-  <link href="~/css/adminLayout.css" rel="stylesheet" type="text/css" />
+  <link href="~/css/admin-layout.css" rel="stylesheet" type="text/css" />
 }
 
 @section scripts{
-   <partial name="_ValidationScriptsPartial" />
+  <partial name="_ValidationScriptsPartial" />
 }
+
+@RenderSection("scripts", false)
+@RenderSection("styles", false)
 
 @{
   Layout = "_MainLayout";
@@ -17,6 +20,7 @@
   var dropdowns = new[] {
     new {
       BaseUrl = "/Admin/User",
+      Icon = "users",
       Label = "User",
       Items = new [] {
         new {
@@ -33,6 +37,7 @@
     },
     new {
       BaseUrl = "/Admin/Category",
+      Icon = "tags",
       Label = "Category",
       Items = new [] {
         new {
@@ -93,7 +98,7 @@
   </nav>
 
   <!-- Page Content -->
-  <div class="col pt-3 pr-0 pb-3 pl-3">
+  <div class="col pt-3 pr-0 pb-3 pl-3 overflow-auto">
     @RenderBody()
   </div>
 </div>    

@@ -1,0 +1,7 @@
+.bloggie-datatable {
+  max-height: 500px;
+}
+
+.bloggie-datatable td {
+  vertical-align: middle;
+}

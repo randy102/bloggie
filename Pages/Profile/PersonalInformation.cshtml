@@ -1,0 +1,59 @@
+﻿@page
+@model Bloggie.Pages.PersonalInformationModel
+@{
+  ViewData["Title"] = "Personal Information";
+}
+
+@section Styles {
+  <link rel="stylesheet" href="~/css/profile.css">
+}
+
+<div id="user-profile-card" class="card m-auto w-100">
+  <div class="card-header display-4">Profile</div>
+
+  <div class="card-body">
+    <div class="row">
+      <div class="col-3 text-uppercase h6 text-muted">
+        Name
+      </div>
+
+      <div class="col">
+        @Model.UserProfile.FullName
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-3 text-uppercase h6 text-muted">
+        Email
+      </div>
+
+      <div class="col">
+        @Model.UserProfile.Email
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+      <div class="col-3 text-uppercase h6 text-muted">
+        Role
+      </div>
+
+      <div class="col">
+        @Model.UserProfile.Role
+      </div>
+    </div>
+  </div>
+
+  <div class="card-footer">
+    <a href="/Profile/ChangePassword" class="btn btn-primary mr-3">
+      Change password
+    </a>
+
+    <a href="/Profile/ChangeUserName" class="btn btn-primary">
+      Change name
+    </a>
+  </div>
+</div>

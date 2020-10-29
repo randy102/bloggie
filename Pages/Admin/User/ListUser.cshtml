@@ -1,49 +1,70 @@
 @page
 @model Bloggie.Pages.Admin.ListUserModel
 
+@using Bloggie.Models;
+
 @{
-   Layout = "_AdminLayout";
+  Layout = "_AdminLayout";
 }
 
-<div class="container">
-   <h2>User List</h2>
-   <table class="table list-user-table " style="text-align: center;">
-      <tr>
-         <th>Email</th>
-         <th>FullName</th>
-         <th>Role</th>
-         <th>Name of Role</th>
-         <th>Active</th>
-         <th>Status</th>
-      </tr>
+@section Styles {
+  <link rel="stylesheet" href="@Url.Content("~/css/ListUser.css")">
+}
 
-      @foreach (var user in Model.Users)
-      {
-         <tr>
+@section Scripts {
+  <script src="@Url.Content("~/js/ListUser.js")"></script>
+}
+
+
+<div class="container">
+  <div class="mb-3">
+    <div class="d-inline-block display-4 mr-3">Users</div>
+
+    <a class="btn btn-primary align-text-bottom" href="/Admin/User/CreateUser">
+      Create User
+    </a>
+  </div>
+
+  <div class="table-responsive bloggie-datatable">
+    <table class="table table-fixed">
+      <thead>
+        <tr>
+          <th>Email</th>
+          <th>Name</th>
+          <th class="text-center">Moderator</th>
+          <th class="text-center">Locked</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        @foreach (var user in Model.Users) {
+          <tr>
             <td>@user.Email</td>
 
             <td>@user.FullName</td>
 
-            <td>
-               <form asp-page-handler="ChangeRole" method="post">
-                  <input type="hidden" name="idChangeRole" value="@user.Id">
-                  <button class="form-control" type="submit" style="border-radius: 15px;">Change Role</button>
-               </form>
+            <td class="text-center">
+              <form asp-page-handler="ChangeRole" method="post">
+                <input hidden name="userId" value="@user.Id">
+                <div class="custom-control custom-switch">
+                  <input hidden checked="@(user.Role == UserRole.Moderator)" onchange="this.form.submit()" type="checkbox" class="custom-control-input" id="toggle-moderator-@user.Id">
+                  <label class="custom-control-label" for="toggle-moderator-@user.Id"></label>
+                </div>
+              </form>
             </td>
 
-            <td>@user.Role</td>
+            <td class="text-center">
+              <form asp-page-handler="ChangeActive" method="post">
+                <input hidden name="userId" value="@user.Id">
 
-            <td>
-               <form asp-page-handler="ChangeActive" method="post">
-                  <input type="hidden" name="idChangeActive" value="@user.Id">
-                  <button class="form-control" type="submit" style="border-radius: 15px;">Change Active</button>
-               </form>
+                <button type="submit" class="btn btn-round btn-sm @(user.Active ? "btn-secondary" : "btn-danger")">
+                  <i class="fas @(user.Active ? "fa-unlock" : "fa-lock")"></i>
+                </button>
+              </form>
             </td>
-
-            <td>@user.Active</td>
-         </tr>
-      }
-   </table>
-
-   <link rel="stylesheet" href="~/css/listUser.css">
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
 </div>

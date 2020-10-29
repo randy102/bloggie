@@ -1,0 +1,36 @@
+@page
+@model Bloggie.Pages.ChangeUserNameModel
+
+@using Microsoft.AspNetCore.Http
+
+@{
+  ViewData["Title"] = "Change Name";
+}
+
+@section Scripts {
+  <partial name="_ValidationScriptsPartial" />
+}
+
+<div class="row no-gutters justify-content-center align-self-center m-auto">
+	<div style="width: 400px">
+		<div class="display-4 text-center">
+			Change name
+		</div>
+
+		<hr class="my-4">
+
+		<form method="POST" class="needs-validation" novalidate>
+      <div class="form-group row mx-0">
+        <label for="new-name" class="col-sm-2 col-form-label mr-sm-3 pl-0">
+          Name:
+        </label>
+
+        <input value="@HttpContext.User.Identity.Name" id="new-name" required type="text" class="form-control col" asp-for="FullName">
+      </div>
+
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
+			</div>
+		</form>
+	</div>
+</div>
