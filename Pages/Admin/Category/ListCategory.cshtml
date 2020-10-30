@@ -14,10 +14,11 @@
     @foreach (var cate in Model.Categories){
       <tr>
         <td>@cate.Name</td>
+        
         <td>
-        @foreach (var p in cate.Posts) {
-          <li class="list-unstyled">@p.Title</li>
-        }
+          <a class="btn btn-primary btn-sm" href="/Admin/Category/UpdateCategory?id=@cate.Id">
+            Edit
+          </a>
         </td>
       </tr>
     }
