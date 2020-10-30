@@ -26,7 +26,7 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow">
     <div class="container">
-      <a class="navbar-brand" asp-page="/Index">Bloggie</a>
+      <a class="navbar-brand" href="/Index">Bloggie</a>
 
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bloggie-navbar"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -36,15 +36,15 @@
       <div id="bloggie-navbar" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
-            <a class="nav-link text-dark" asp-page="/Index">Home</a>
+            <a class="nav-link text-dark" href="/Index">Home</a>
           </li>
         </ul>
 
         <form class="form-inline">
           @if (!User.Identity.IsAuthenticated)
           {
-            <a class="btn btn-primary mr-2" asp-page="/Login">Login</a>
-            <a class="btn btn-outline-primary" asp-page="/Register">Register</a>
+            <a class="btn btn-primary mr-2" href="/Login">Login</a>
+            <a class="btn btn-outline-primary" href="/Register">Register</a>
           }
           else
           {
@@ -53,22 +53,22 @@
                 @(sessionFullName ?? Context.User.Identity.Name)
               </a>
               <div class="dropdown-menu dropdown-menu-right">
-                <a class="dropdown-item @(pageUrl == "/Profile/PersonalInformation" ? "active" : "")" asp-page="/Profile/PersonalInformation">
-                  <i class="fa fa-user"></i> Profile
+                <a class="dropdown-item @(pageUrl == "/Profile" ? "active" : "")" href="/Profile">
+                  <i class="fa fa-user fa-fw mr-2"></i> Profile
                 </a>
 
                 @if (User.IsInRole("Admin")) {
-                  <a class="dropdown-item @(pageUrl == "/Admin/User/ListUser" ? "active" : "")" asp-page="/Admin/User/ListUser">
-                    <i class="fa fa-cog"></i> Admin management
+                  <a class="dropdown-item @(pageUrl == "/Admin/Users" ? "active" : "")" href="/Admin/Users">
+                    <i class="fa fa-cog fa-fw mr-2"></i> Admin
                   </a>
                 } else if (User.IsInRole("Moderator")) {
                   <a class="dropdown-item @(pageUrl == "" ? "active" : "")">
-                    <i class="fa fa-cog"></i> Post management
+                    <i class="fa fa-cog fa-fw mr-2"></i> Approve posts
                   </a>
                 }
 
-                <a class="dropdown-item" asp-page="/Logout">
-                  <i class="fa fa-sign-out-alt"></i> Logout
+                <a class="dropdown-item" href="/Logout">
+                  <i class="fa fa-sign-out-alt fa-fw mr-2"></i> Logout
                 </a>
               </div>
             </div>
@@ -84,7 +84,7 @@
 
   <footer class="container-fluid flex-grow-0 flex-shrink-1 border-top text-muted box-shadow bg-white py-3">
     <div class="container">
-      &copy; 2020 - Bloggie - <a asp-page="/Privacy">Privacy</a>
+      &copy; 2020 - Bloggie - <a href="/Privacy">Privacy</a>
     </div>
   </footer>
 

@@ -20,7 +20,7 @@ namespace Bloggie.Pages {
     [BindProperty]
     public string FullName { get; set; }
 
-    public async Task<IActionResult> OnPostAsync() {
+    public IActionResult OnPost() {
       var CurrentEmail = HttpContext.User.FindFirst(ClaimTypes.Email).Value;
       var CurrentUser = db.Users.Where(u => u.Email == CurrentEmail).First();
       CurrentUser.FullName = FullName;
@@ -29,7 +29,7 @@ namespace Bloggie.Pages {
 
       HttpContext.Session.SetString("FullName", FullName);
 
-      return RedirectToPage("PersonalInformation");
+      return Redirect("/Profile");
     }
   }
 }

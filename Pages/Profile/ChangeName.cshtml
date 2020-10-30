@@ -25,12 +25,20 @@
           Name:
         </label>
 
-        <input value="@HttpContext.User.Identity.Name" id="new-name" required type="text" class="form-control col" asp-for="FullName">
+        <input value="@(HttpContext.Session.GetString("FullName") ?? HttpContext.User.Identity.Name)" id="new-name" required type="text" class="form-control col" asp-for="FullName">
+
+				<div class="invalid-feedback">
+					Please provide a name.
+				</div>
       </div>
 
 			<div class="form-group">
 				<button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
 			</div>
+
+			<a href="/Profile">
+				<i class="fa fa-arrow-left mr-1"></i>Back to Profile
+			</a>
 		</form>
 	</div>
 </div>
