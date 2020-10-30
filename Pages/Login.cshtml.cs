@@ -58,8 +58,6 @@ namespace Bloggie.Pages {
       await HttpContext.SignInAsync(authenticationType, new ClaimsPrincipal(claimsIdentity));
 
       HttpContext.Session.SetString("FullName", existed.FullName);
-      HttpContext.Session.SetString("Role", existed.Role.ToString());
-      HttpContext.Session.SetString("Email", existed.Email);
 
       return RedirectToPage("/Index");
     }

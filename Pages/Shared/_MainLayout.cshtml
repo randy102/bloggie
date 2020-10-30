@@ -2,6 +2,8 @@
 
 @{
   string pageUrl = Context.Request.Path;
+
+  string sessionFullName = Context.Session.GetString("FullName");
 }
 
 <!DOCTYPE html>
@@ -48,7 +50,7 @@
           {
             <div class="dropdown">
               <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                @(Context.User.Identity.Name)
+                @(sessionFullName ?? Context.User.Identity.Name)
               </a>
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item @(pageUrl == "/Profile/PersonalInformation" ? "active" : "")" asp-page="/Profile/PersonalInformation">
