@@ -3,21 +3,48 @@
 @{
 }
 
+@* Thông tin cần có *@
 <table class="table">
   <tr>
     <th>Title</th>
     <th>Category</th>
-    <th>Author</th>
     <th>CreatedAt</th>
+    <th>Status</th>
+    <th>Handling</th>
   </tr>
 
   @foreach (var post in Model.Posts)
   {
+    //Biến này dùng để lưu trữ trạng thái tiếp theo của Post( Post State)
+    int state = -1;
     <tr>
       <td>@post.Title</td>
       <td>@post.Category.Name</td>
-      <td>@post.Author.FullName</td>
       <td>@post.CreatedAt.ToShortDateString()</td>
+      <td>@post.State</td>
+      <td>
+        @* Draft thành Pending
+        Published thành Unpublished *@
+        @if (post.State == Bloggie.Models.PostState.Draft || post.State == Bloggie.Models.PostState.Published)
+        {
+          //Trạng thái tăng 1
+          state = (int)@post.State + 1;
+        }
+        @* Pending thành Draft
+        Rejected thành Pending
+        Unpublished thành Published *@
+        else
+        {
+          //Trạng thái giảm 1
+          state = (int)@post.State - 1;
+        }
+        <form action="" method="post">
+          @* id dùng để xác định post *@
+          <input asp-for="postId" value="@post.Id" hidden>
+          @* Tên trạng thái tiếp theo *@
+          <input type="submit" value="@((Bloggie.Models.PostState)state)">
+        </form>
+      </td>
     </tr>
   }
 </table>

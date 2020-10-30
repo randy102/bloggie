@@ -10,7 +10,7 @@ namespace Bloggie.Models {
 
     public int CategoryId {get; set;}=1;
     public virtual Category Category {get; set;}
-    public string tags { get; set; }
+    public string Tags { get; set; }
 
     public string Title {get; set;}
     public string Img {get; set;}

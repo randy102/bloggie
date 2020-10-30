@@ -15,7 +15,7 @@ namespace Bloggie.Pages {
 
     //Đối tượng dùng để ánh xạ thông tin từ form input
     [BindProperty]
-    [Required(ErrorMessage= "Category name is required.")]
+    [Required(ErrorMessage = "Category name is required.")]
     public string newName { get; set; }
 
     //Lời nhắn trạng thái
@@ -33,7 +33,7 @@ namespace Bloggie.Pages {
       //Input hợp lệ và tên thể loại chưa tồn tại
       if (ModelState.IsValid && !isExist) {
         Category category = new Category();
-        category.Name =newName;
+        category.Name = newName;
         //Thêm vào bảng Categories
         db.Categories.Add(category);
 

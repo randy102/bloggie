@@ -1,7 +1,7 @@
 ﻿@page
 @model Bloggie.Pages.CreateCategoryModel
 @{
-    Layout="_AdminLayout";
+    Layout = "_AdminLayout";
 }
 <script src="~/js/Validation.js"></script>
 
@@ -9,26 +9,28 @@
     <h2>Create Category</h2>
     <form method="post" class="needs-validation" novalidate>
         <div class="form-group">
-        <label>Name:</label>
+            <label>Name:</label>
 
-        <input required type="text" asp-for="newName" class="form-control" style="border-radius: 10px;" placeholder="Name...">
+            <input required type="text" asp-for="newName" class="form-control" style="border-radius: 10px;"
+placeholder="Name...">
 
-        <div class="invalid-feedback">
-            <span asp-validation-for="newName"></span>
+            <div class="invalid-feedback">
+                <span asp-validation-for="newName"></span>
+            </div>
         </div>
-        </div>
 
-         @if (@Model.ErrorMessage != null) {
-				<div class="alert alert-danger alert-dismissible fade show" role="alert" style="border-radius: 10px;">
-					<strong>Error:</strong> @Model.ErrorMessage
-					<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-						<i class="fas fa-times"></i>
-					</button>
-				</div>
-			}
+        @if (@Model.ErrorMessage != null)
+        {
+            <div class="alert alert-danger alert-dismissible fade show" role="alert" style="border-radius: 10px;">
+                <strong>Error:</strong> @Model.ErrorMessage
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        }
 
         <button type="submit" class="btn btn-primary" style="border-radius: 10px;">
-         Create
+            Create
         </button>
     </form>
 </div>
