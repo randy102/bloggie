@@ -1,26 +1,46 @@
 ﻿@page
 @model Bloggie.Pages.UpdateCategoryModel
-@{
-  Layout = "_AdminLayout";
+@section Scripts{
+    <script src="~/js/Validation.js"></script>
 }
-<table>
-  <tr>
-    <td>
-      <div class="text-danger">
-        @Model.ErrorMessage
-      </div>
-    </td>
-  </tr>
-  <tr>
-    <td>Current Name: @Model.category.Name</td>
-  </tr>
-  <tr>
-    <td>
-      <form action="" method="post">
+
+<div class="row no-gutters justify-content-center align-self-center m-auto">
+	<div style="width: 400px">
+		<div class="display-4 text-center">
+			Change name
+		</div>
+
+		<hr class="my-4">
+
+		<form method="POST" class="needs-validation" novalidate>
+      <div class="form-group row mx-0">
+        <label for="new-name" class="col-sm-3 col-form-label mr-sm-1 pl-0">
+         New name:
+        </label>
         <input asp-for="@Model.category.Id" hidden>
-        Input name <input type="text" asp-for="@Model.newName" required>
-        <input type="submit" value="Submit">
-      </form>
-    </td>
-  </tr>
-</table>
+        <input value="@Model.category.Name" id="new-name" required type="text" class="form-control col" asp-for="@Model.newName">
+
+				<div class="invalid-feedback">
+					Category name is required !
+				</div>
+        
+      </div>
+      @if (@Model.ErrorMessage != null)
+      {
+          <div class="alert alert-danger alert-dismissible fade show" role="alert" style="border-radius: 10px;">
+              <strong>Error:</strong> @Model.ErrorMessage
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <i class="fas fa-times"></i>
+              </button>
+          </div>
+      }
+			<div class="form-group">
+				<button type="submit" class="btn btn-primary btn-lg btn-block">Save</button>
+			</div>
+
+			<a href="/Admin/Category/ListCategory">
+				<i class="fa fa-arrow-left mr-1"></i>Back to ListCategory
+			</a>
+		</form>
+	</div>
+</div>

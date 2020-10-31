@@ -9,18 +9,34 @@
     <tr>
       <th>Category</th>
       <th>Posts</th>
+      <th>Edit</th>
+      <th>Delete</th>
     </tr>
 
     @foreach (var cate in Model.Categories){
-      <tr>
-        <td>@cate.Name</td>
-        
-        <td>
-          <a class="btn btn-primary btn-sm" href="/Admin/Category/UpdateCategory?id=@cate.Id">
-            Edit
-          </a>
-        </td>
-      </tr>
-    }
+       <tr>
+          <td>@cate.Name</td>
+          <td>
+            @foreach (var item in cate.Posts)
+            {
+                @item.Title
+                <br>
+            }
+          </td>
+          <td>
+            <a class="btn rounded-circle btn-primary" href="/Admin/Category/UpdateCategory?id=@cate.Id">
+              <i class="fas fa-pen-nib"></i>
+            </a>
+          </td>
+          <td>
+            <form  method="POST">
+             
+              <button type="submit" class="btn rounded-circle btn-danger">
+                  <i class="fas fa-trash-alt"></i>
+              </button>@*asp-page-handler="Delete"  <input hidden asp-for="categoryId" value="@cate.Id">*@
+            </form>
+          </td>
+        </tr>
+      }
   </table>
 </div>
