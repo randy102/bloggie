@@ -25,7 +25,6 @@ namespace Bloggie.Pages.Admin {
 
     //Xử lý yêu cầu thay đổi quyền của 1 tài khoản
     public IActionResult OnPostChangeRole(int userId) {
-
       //Tìm kiếm tài khoản dựa trên Id
       var user = db.Users.Find(userId);
 
@@ -36,7 +35,7 @@ namespace Bloggie.Pages.Admin {
       db.SaveChanges();
 
       //Chuyển hướng đến trang hiện thị danh sách
-      return Redirect("/Admin/Users/Index");
+      return Page();
     }
 
     //Xử lý yêu cầu thay đổi trạng thái của 1 tài khoản
@@ -52,7 +51,7 @@ namespace Bloggie.Pages.Admin {
       db.SaveChanges();
 
       //Chuyển hướng đến trang hiện thị danh sách
-      return Redirect("/Admin/Users/Index");
+      return Page();
     }
   }
 }

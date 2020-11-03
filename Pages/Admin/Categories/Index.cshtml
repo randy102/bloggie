@@ -17,41 +17,38 @@
         Create Category
     </a>
   </div>
-  <table class="table table-fixed" style="width: 880px;text-align: center;">
-    <thead>
+  
+  <div class="bloggie-datatable">
+    <table class="table">
+      <thead>
         <tr>
-          <th>Category</th>
-          <th>Posts</th>
-          <th class="pr-1">Edit</th>
-          <th>Delete</th>
+          <th><div>Category</div></th>
+          <th><div>Edit</div></th>
+          <th><div>Delete</div></th>
         </tr>
-    </thead>
-    <tbody>
-      @foreach (var cate in Model.Categories){
-        <tr>
-            <td>@cate.Name</td>
+      </thead>
+  
+      <tbody>
+        @foreach (var category in Model.Categories) {
+          <tr>
+            <td>@category.Name</td>
+            
             <td>
-              @foreach (var item in cate.Posts)
-              {
-                  @item.Title
-                  <br>
-              }
-            </td>
-            <td class="pl-5">
-              <a class="btn btn-round btn-primary" href="/Admin/Categories/Update?id=@cate.Id">
-                <i class="fas fa-pencil-alt"></i>
+              <a class="btn btn-round btn-primary btn-sm" href="/Admin/Categories/Update?id=@category.Id">
+                <i class="fas fa-pen"></i>
               </a>
             </td>
-            <td class="pl-5">
-              <form  method="POST">
-              
-                <button type="submit" class="btn btn-round btn-danger">
-                    <i class="fas fa-trash-alt"></i>
-                </button>@*asp-page-handler="Delete"  <input hidden asp-for="categoryId" value="@cate.Id">*@
+  
+            <td>
+              <form method="POST" asp-page-handler="Delete" asp-route-id="@category.Id">
+                <button class="btn btn-round btn-danger btn-sm">
+                  <i class="fas fa-trash"></i>
+                </button>
               </form>
             </td>
           </tr>
         }
-    </tbody>
-  </table>
+      </tbody>
+    </table>
+  </div>
 </div>
