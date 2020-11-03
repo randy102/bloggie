@@ -1,44 +1,13 @@
-/* Sidebar dropdown label */
-.sidebar-dropdown__label {
-  position: relative;
-  display: block;
-  font-size: 20px;
+.sidebar-link {
+  cursor: pointer;
+  user-select: none;
 }
 
-/* Sidebar dropdown label arrow */
-.sidebar-dropdown__label::after {
-  display: block;
-  position: absolute;
-  top: 50%;
-  right: 0;
-  transform: translateY(-50%);
+.sidebar-link.active {
+  background-color: var(--primary);
+  color: white;
 }
 
-/* Sidebar dropdown items container */
-.sidebar-dropdown__items {
-  padding-left: 8px;
-}
-
-/* Sidebar dropdown item */
-.sidebar-dropdown__item {
-}
-
-/* Sidebar dropdown item label hover */
-.sidebar-dropdown__item a:hover {
+.sidebar-link.active:hover {
   text-decoration: none;
-}
-
-/* Sidebar dropdown item label hover text */
-.sidebar-dropdown__item a:hover span {
-  text-decoration: underline;
-}
-
-/* Sidebar dropdown item icon */
-.sidebar-dropdown__item span {
-  margin-left: 4px;
-}
-
-/* Active sidebar dropdown label and item */
-.sidebar-dropdown .active {
-  font-weight: bold;
 }

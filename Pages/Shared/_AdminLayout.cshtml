@@ -17,22 +17,16 @@
 
   string pageUrl = Context.Request.Path;
 
-  var dropdowns = new[] {
+  var links = new[] {
     new {
-      BaseUrl = "/Admin/Users",
+      Url = "/Admin/Users",
       Icon = "users",
-      Label = "User",
-      Items = new [] {
-        new {
-          Url = "Index",
-          Text = "User list",
-          Icon = "users"
-        },
-      }
+      Label = "Users",
     },
     new {
-      BaseUrl = "/Admin/Category",
+      Url = "/Admin/Categories",
       Icon = "tags",
+<<<<<<< HEAD
       Label = "Category",
       Items = new [] {
         new {
@@ -53,48 +47,23 @@
           Icon = "list"
         },
       }
+=======
+      Label = "Categories",
+>>>>>>> 6e15adc5866d418abbd9b71513ffaced68bdc431
     }
   };
 }
 
 <div class="row w-100 my-n3 mx-0">
   <!-- Sidebar -->
-  <nav class="h-100 border-right bg-light p-3" style="width: 200px">
+  <nav class="h-100 border-right bg-light py-3" style="width: 200px">
     <ul class="list-unstyled">
-      @foreach (var dropdown in dropdowns)
-      {
-        var dropdownIsActive = pageUrl.StartsWith(dropdown.BaseUrl);
-        var activeLabelClass = dropdownIsActive ? "active" : "";
-        var showDropdownClass = dropdownIsActive ? "show" : "";
-        var randomId = "ID-" + Guid.NewGuid().ToString("N");
+      @foreach (var link in links) {
+        var activeLabelClass = pageUrl.StartsWith(link.Url) ? "active" : "";
 
-        <li class="sidebar-dropdown">
-          <a
-            href="#@randomId"
-            data-toggle="collapse"
-            aria-expanded="false"
-            class="dropdown-toggle sidebar-dropdown__label @activeLabelClass"
-          >
-            @(dropdown.Label)
-          </a>
-  
-          <ul
-            class="collapse list-unstyled sidebar-dropdown__items @showDropdownClass"
-            id="@randomId"
-          >
-            @foreach (var item in dropdown.Items)
-            {
-              var url = dropdown.BaseUrl + "/" + item.Url;
-
-              <li class="sidebar-dropdown__item">
-                <a href="@url" class="@(url == pageUrl ? "active" : "")">
-                  <i class="fas fa-@(item.Icon) fa-fw"></i>
-                  <span>@(item.Text)</span>
-                </a>
-              </li>
-            }
-          </ul>
-        </li>
+        <a href="@link.Url" class="sidebar-link d-block h5 px-3 py-2 @activeLabelClass">
+          <i class="fas fa-@(link.Icon) fa-fw mr-2"></i>@(link.Label)
+        </a>
       }
     </ul>
   </nav>
