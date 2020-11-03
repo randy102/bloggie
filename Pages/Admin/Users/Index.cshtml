@@ -8,7 +8,7 @@
 }
 
 @section Styles {
-  <link rel="stylesheet" href="@Url.Content("~/css/ListUser.css")">
+   <link href="~/css/table.css" rel="stylesheet" type="text/css" />
 }
 
 @section Scripts {
@@ -24,14 +24,14 @@
     </a>
   </div>
 
-  <div class="table-responsive bloggie-datatable">
-    <table class="table table-fixed">
+  <div class="bloggie-datatable">
+    <table class="table table-fixed" style="text-align: center;">
       <thead>
         <tr>
           <th>Email</th>
           <th>Name</th>
-          <th class="text-center">Moderator</th>
-          <th class="text-center">Locked</th>
+          <th class="pr-5">Moderator</th>
+          <th class="pr-5">Locked</th>
         </tr>
       </thead>
       

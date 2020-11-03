@@ -1,0 +1,22 @@
+thead, tbody, tr, td, th { display: block; }
+
+tbody tr td {
+    word-wrap: break-word;
+}
+
+tr:after {
+    content: '';
+    display: block;
+    visibility: hidden;
+    clear: both;
+}
+
+tbody {
+    height: 400px;
+    overflow-y: auto;
+}
+
+tbody td, thead th {
+    width:25%;
+    float: left;
+}

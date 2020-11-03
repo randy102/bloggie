@@ -3,46 +3,55 @@
 @{
   Layout = "_AdminLayout";
 }
+@section styles{
+  <link href="~/css/table.css" rel="stylesheet" type="text/css" />
+}
+@section Scripts {
+  <script src="@Url.Content("~/js/ListUser.js")"></script>
+}
 <div class="container">
   <div class="mb-3">
-    <div class="d-inline-block display-4 mr-3">Category List</div>
+    <div class="d-inline-block display-4 mr-3">Categories</div>
     <a class="btn btn-success btn-sm align-text-bottom ml-auto" href="/Admin/Category/CreateCategory">
         <i class="fas fa-plus"></i>
-        Create User
+        Create Category
     </a>
   </div>
-  <table class="table list-user-table " style="text-align: center;">
-    <tr>
-      <th>Category</th>
-      <th>Posts</th>
-      <th>Edit</th>
-      <th>Delete</th>
-    </tr>
-
-    @foreach (var cate in Model.Categories){
-       <tr>
-          <td>@cate.Name</td>
-          <td>
-            @foreach (var item in cate.Posts)
-            {
-                @item.Title
-                <br>
-            }
-          </td>
-          <td>
-            <a class="btn rounded-circle btn-primary" href="/Admin/Category/UpdateCategory?id=@cate.Id">
-              <i class="fas fa-pen-nib"></i>
-            </a>
-          </td>
-          <td>
-            <form  method="POST">
-             
-              <button type="submit" class="btn rounded-circle btn-danger">
-                  <i class="fas fa-trash-alt"></i>
-              </button>@*asp-page-handler="Delete"  <input hidden asp-for="categoryId" value="@cate.Id">*@
-            </form>
-          </td>
+  <table class="table table-fixed" style="width: 880px;text-align: center;">
+    <thead>
+        <tr>
+          <th>Category</th>
+          <th>Posts</th>
+          <th class="pr-1">Edit</th>
+          <th>Delete</th>
         </tr>
-      }
+    </thead>
+    <tbody>
+      @foreach (var cate in Model.Categories){
+        <tr>
+            <td>@cate.Name</td>
+            <td>
+              @foreach (var item in cate.Posts)
+              {
+                  @item.Title
+                  <br>
+              }
+            </td>
+            <td class="pl-5">
+              <a class="btn btn-round btn-primary" href="/Admin/Category/UpdateCategory?id=@cate.Id">
+                <i class="fas fa-pen-nib"></i>
+              </a>
+            </td>
+            <td class="pl-5">
+              <form  method="POST">
+              
+                <button type="submit" class="btn btn-round btn-danger">
+                    <i class="fas fa-trash-alt"></i>
+                </button>@*asp-page-handler="Delete"  <input hidden asp-for="categoryId" value="@cate.Id">*@
+              </form>
+            </td>
+          </tr>
+        }
+    </tbody>
   </table>
 </div>

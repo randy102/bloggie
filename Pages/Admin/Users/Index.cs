@@ -36,7 +36,7 @@ namespace Bloggie.Pages.Admin {
       db.SaveChanges();
 
       //Chuyển hướng đến trang hiện thị danh sách
-      return Redirect("./ListUser");
+      return Redirect("/Admin/Users/Index");
     }
 
     //Xử lý yêu cầu thay đổi trạng thái của 1 tài khoản
@@ -52,7 +52,7 @@ namespace Bloggie.Pages.Admin {
       db.SaveChanges();
 
       //Chuyển hướng đến trang hiện thị danh sách
-      return Redirect("./ListUser");
+      return Redirect("/Admin/Users/Index");
     }
   }
 }
