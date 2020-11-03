@@ -19,38 +19,20 @@
 
   var links = new[] {
     new {
-      Url = "/Admin/Users",
+      Url = "/Admin/Users/Index",
       Icon = "users",
       Label = "Users",
     },
     new {
-      Url = "/Admin/Categories",
+      Url = "/Admin/Categories/Index",
       Icon = "tags",
-<<<<<<< HEAD
-      Label = "Category",
-      Items = new [] {
-        new {
-          Url = "ListCategory",
-          Text = "Category list",
-          Icon = "list"
-        },
-      }
-    },
-     new {
-      BaseUrl = "/Post",
-      Icon = "tags",
-      Label = "Post",
-      Items = new [] {
-        new {
-          Url = "ListPost",
-          Text = "Post list",
-          Icon = "list"
-        },
-      }
-=======
       Label = "Categories",
->>>>>>> 6e15adc5866d418abbd9b71513ffaced68bdc431
-    }
+    },
+    new {
+      Url = "/Post/ListPost",
+      Icon = "list",
+      Label = "Posts",
+    },
   };
 }
 

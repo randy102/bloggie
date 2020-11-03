@@ -58,7 +58,7 @@
                 </a>
 
                 @if (User.IsInRole("Admin")) {
-                  <a class="dropdown-item @(pageUrl == "/Admin/Users" ? "active" : "")" href="/Admin/Users">
+                  <a class="dropdown-item @(pageUrl == "/Admin/Users/" ? "active" : "")" href="/Admin/Users/Index">
                     <i class="fa fa-cog fa-fw mr-2"></i> Admin
                   </a>
                 } else if (User.IsInRole("Moderator")) {

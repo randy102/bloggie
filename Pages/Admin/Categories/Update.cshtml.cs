@@ -23,7 +23,7 @@ namespace Bloggie.Pages {
     public IActionResult OnGet() {
       category = db.Categories.Find(id);
       if (category == null) {
-        return Redirect("./ListCategory");
+        return Redirect("./Index");
       } else {
         return Page();
       }
@@ -47,7 +47,7 @@ namespace Bloggie.Pages {
         //Lưu thay đổi 
         db.SaveChanges();
         //Chuyển hướng đến trang ListCategory
-        return Redirect("./ListCategory");
+        return Redirect("./Index");
       } else {
         //Tên thể loại đã tồn tại => tạo thất bại
         //Lời nhắn 
