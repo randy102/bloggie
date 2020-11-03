@@ -43,8 +43,9 @@
             <td>@user.FullName</td>
 
             <td>
-              <form asp-page-handler="ChangeRole" method="post">
-                <input hidden name="userId" value="@user.Id">
+              <form method="post" asp-page-handler="ChangeRole">
+                <input type="hidden" name="id" value="@user.Id">
+
                 <div class="custom-control custom-switch">
                   <input hidden checked="@(user.Role == UserRole.Moderator)" onchange="this.form.submit()" type="checkbox" class="custom-control-input" id="toggle-moderator-@user.Id">
                   <label class="custom-control-label" for="toggle-moderator-@user.Id"></label>
@@ -53,8 +54,8 @@
             </td>
 
             <td>
-              <form asp-page-handler="ChangeActive" method="post">
-                <input hidden name="userId" value="@user.Id">
+              <form method="post" asp-page-handler="ChangeActive">
+                <input type="hidden" name="id" value="@user.Id">
 
                 <button type="submit" class="btn btn-round btn-sm @(user.Active ? "btn-secondary" : "btn-danger")">
                   <i class="fas @(user.Active ? "fa-unlock" : "fa-lock")"></i>

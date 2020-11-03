@@ -40,7 +40,9 @@
             </td>
   
             <td>
-              <form method="POST" asp-page-handler="Delete" asp-route-id="@category.Id">
+              <form method="POST" asp-page-handler="Delete">
+                <input type="hidden" name="id" value="@category.Id">
+
                 <button class="btn btn-round btn-danger btn-sm">
                   <i class="fas fa-trash"></i>
                 </button>
