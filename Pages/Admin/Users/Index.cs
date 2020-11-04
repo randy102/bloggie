@@ -23,7 +23,9 @@ namespace Bloggie.Pages.Admin {
 
       db.SaveChanges();
 
-      return Page();
+      Users = db.Users.Where(u => u.Role != UserRole.Admin).ToList();
+
+      return Redirect("/Admin/Users");
     }
 
     public IActionResult OnPostChangeActive(int id) {
@@ -33,7 +35,7 @@ namespace Bloggie.Pages.Admin {
 
       db.SaveChanges();
 
-      return Page();
+      return Redirect("/Admin/Users");
     }
   }
 }

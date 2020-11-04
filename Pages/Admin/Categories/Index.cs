@@ -22,15 +22,11 @@ namespace Bloggie.Pages {
     public IActionResult OnPostDelete(int id) {
       var category = db.Categories.Find(id);
 
-      if (category == null) {
-        return NotFound();
-      }
-
       db.Categories.Remove(category);
 
       db.SaveChanges();
 
-      return Page();
+      return Redirect("/Admin/Categories");
     }
   }
 }
