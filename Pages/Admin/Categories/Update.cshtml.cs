@@ -10,24 +10,30 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Bloggie.Pages {
   public class UpdateCategoryModel : PageModel {
-
     private BloggieContext db;
+
     public UpdateCategoryModel(BloggieContext db) => this.db = db;
+
     public string ErrorMessage { get; set; }
 
     [BindProperty(SupportsGet = true)]
     public int id { get; set; }
+
     [BindProperty]
     public String newName { get; set; }
+
     public Category category { get; set; }
+
     public IActionResult OnGet() {
       category = db.Categories.Find(id);
+
       if (category == null) {
-        return Redirect("./Index");
+        return Redirect("/Admin/Categories");
       } else {
         return Page();
       }
     }
+
     public IActionResult OnPost() {
       category = db.Categories.Find(id);
       //Định dạng chuỗi
@@ -47,7 +53,7 @@ namespace Bloggie.Pages {
         //Lưu thay đổi 
         db.SaveChanges();
         //Chuyển hướng đến trang ListCategory
-        return Redirect("./Index");
+        return Redirect("/Admin/Categories");
       } else {
         //Tên thể loại đã tồn tại => tạo thất bại
         //Lời nhắn 

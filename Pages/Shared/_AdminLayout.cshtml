@@ -1,14 +1,10 @@
 @section Styles {
-  <partial name="_ValidationScriptsPartial" />
   <link href="~/css/admin-layout.css" rel="stylesheet" type="text/css" />
 }
 
-@section scripts{
-  <partial name="_ValidationScriptsPartial" />
-}
+@RenderSection("Scripts", false)
 
-@RenderSection("scripts", false)
-@RenderSection("styles", false)
+@RenderSection("Styles", false)
 
 @{
   Layout = "_MainLayout";
@@ -27,11 +23,6 @@
       Url = "/Admin/Categories",
       Icon = "tags",
       Label = "Categories",
-    },
-    new {
-      Url = "/Post/ListPost",
-      Icon = "list",
-      Label = "Posts",
     },
   };
 }
