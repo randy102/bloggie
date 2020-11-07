@@ -30,7 +30,7 @@ namespace Bloggie.Pages {
         toUpdate.Password = Utils.Hash.GetHashString(Password);
         db.Users.Update(toUpdate);
         db.SaveChanges();
-        return RedirectToPage("PersonalInformation");
+        return RedirectToPage("Profile");
       } catch (Exception error) {
         ErrorMessage = error.Message;
         return Page();
