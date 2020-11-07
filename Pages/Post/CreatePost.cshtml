@@ -1,71 +1,72 @@
 ﻿@page
 @model Bloggie.Pages.CreatePostModel
 @{
+  Layout = "_MainLayout";
 }
 
-<head>
-    <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-@* Thông tin cơ bản về cá nhân đang tạo post *@
-Email: @Model.Author.Email <br>
-Full Name: @Model.Author.FullName <br>
+@section Styles {
+  <link rel="stylesheet" href="~/css/posts.css">
+}
+
+@section Scripts {
+  <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
+}
+
+<div class="display-4 text-center">
+  Create Post
+</div>
+
 <form action="" method="post"><br>
-    @* Tiêu đề *@
-    Title: <input asp-for="@Model.title"> <br>
+  Title: <input asp-for="@Model.title"> <br>
 
-    @* Danh sách thể loại ( chỉ chọn 1 ) *@
-    <select asp-for="@Model.categoryId" asp-items="@Model.categories">
-    </select> <br>
+  @* Danh sách thể loại ( chỉ chọn 1 ) *@
+  <select asp-for="@Model.categoryId" asp-items="@Model.categories">
+  </select> <br>
 
-    @* Nội dung post *@
-    Content: <br>
-    <textarea id="content" asp-for="@Model.content" cols="30" rows="10"></textarea> <br>
+  @* Nội dung post *@
+  Content: <br>
+  <textarea id="content" asp-for="@Model.content" cols="30" rows="10"></textarea> <br>
 
-    @* Tags của post *@
-    Tags <span id="showTags"></span>
-    <input id="tags" type="text" asp-for="@Model.tags" hidden>
-    @* Các ô nhập tag *@
-    <div id="div">
-        <input type="text" name="input[]" id="">
-    </div>
+  @* Tags của post *@
+  Tags <span id="showTags"></span>
+  <input id="tags" type="text" asp-for="@Model.tags" hidden>
+  @* Các ô nhập tag *@
+  <div id="div">
+      <input type="text" name="input[]" id="">
+  </div>
 
-    @* Thêm ô để nhập tag *@
-    <input type="button" value="Add" id="add">
-    @* Lưu tags *@
-    <input type="button" value="Save" id="save"> <br>
+  @* Thêm ô để nhập tag *@
+  <input type="button" value="Add" id="add">
+  @* Lưu tags *@
+  <input type="button" value="Save" id="save"> <br>
 
-    @* Submit form *@
-    <input type="submit" value="Submit">
+  @* Submit form *@
+  <input type="submit" value="Submit">
 </form>
+
 <script>
-    /*Khi nhấn button có id là add
-    sẽ tự động chèn thêm ô vào cuối*/
-    $('#add').click(function () {
-        $("#div").last().append('<input type="text" name="input[]" id="">')
-    })
+  $('#add').click(function () {
+      $("#div").last().append('<input type="text" name="input[]" id="">')
+  })
 
-    /*Khi nhấn button có id là save
-    sẽ tự động lưu các tags vào ô input để submit form
-    đồng thời sẽ hiện ra cho người tạo*/
-    $('#save').click(function () {
-        tags=[]; //mảng chứa các tag
-        //Lấy input theo tên
-        $("input[name='input[]']").each(function () {
-            //Thêm vào mảng
-            tags.push($(this).val());
-        });
-        //Lưu vào ô input
-        $('#tags').val(tags.join(','));
-        //Hiện thị
-        $('#showTags').html(tags.join(','));
-    })
+  $('#save').click(function () {
+      tags=[]; //mảng chứa các tag
+      //Lấy input theo tên
+      $("input[name='input[]']").each(function () {
+          //Thêm vào mảng
+          tags.push($(this).val());
+      });
+      //Lưu vào ô input
+      $('#tags').val(tags.join(','));
+      //Hiện thị
+      $('#showTags').html(tags.join(','));
+  })
 
 
-    //CKEditor
-    ClassicEditor
-        .create(document.querySelector('#content'))
-        .catch(error => {
-        console.error(error);
+  // CKEditor
+  ClassicEditor
+    .create(document.querySelector('#content'))
+    .catch(error => {
+      console.error(error);
     });
 </script>

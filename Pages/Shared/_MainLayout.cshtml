@@ -21,6 +21,12 @@
   <link rel="stylesheet" href="~/css/toggle-switch.css">
   <link rel="stylesheet" href="~/css/flex.css">
   @RenderSection("Styles", required: false)
+
+  <script src="~/lib/jquery/dist/jquery.min.js"></script>
+  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="~/lib/fontawesome-free-5.15.1-web/js/all.js"></script>
+  <script src="~/js/site.js" asp-append-version="true"></script>
+  @RenderSection("Scripts", required: false)
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -88,13 +94,6 @@
       &copy; 2020 - Bloggie - <a href="/Privacy">Privacy</a>
     </div>
   </footer>
-
-  <script src="~/lib/jquery/dist/jquery.min.js"></script>
-  <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="~/lib/fontawesome-free-5.15.1-web/js/all.js"></script>
-  <script src="~/js/site.js" asp-append-version="true"></script>
-
-  @RenderSection("Scripts", required: false)
 </body>
 
 </html>
