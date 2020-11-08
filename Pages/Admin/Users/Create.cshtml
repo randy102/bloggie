@@ -40,8 +40,7 @@
     <div class="form-group">
       <label for="cars">Choose a Role:</label>
 
-      <select asp-for="@Model.User.Role"
-style="width: 150px; height: 35px; border-color:	#C0C0C0; outline: none; border-radius: 10px;">
+      <select asp-for="@Model.User.Role" class="selectpicker">
         @{
           foreach (Bloggie.Models.UserRole role in Enum.GetValues(typeof(Bloggie.Models.UserRole)))
           {
