@@ -20,6 +20,9 @@ namespace Bloggie.Pages {
     [BindProperty]
     public int postId { get; set; }
 
+    [BindProperty(Name = "error", SupportsGet = true)]
+    public string ErrorMessage { get; set; }
+
     //Tài khoản đang đăng nhập
     public User getUser() {
       //Lấy email hiện tại
@@ -31,7 +34,7 @@ namespace Bloggie.Pages {
       Author = getUser();
       Posts = Author.Posts;
     }
-    public void OnPost() {
+    public IActionResult OnPost() {
       //Bài post cần phải thay đổi trạng thái
       var post = db.Posts.Find(postId);
       //Biến này dùng để lưu trữ trạng thái tiếp theo của Post( Post State)
@@ -56,7 +59,25 @@ namespace Bloggie.Pages {
       //Lưu thay đổi
       db.SaveChanges();
       //Chuyển đang trang list Post
-      OnGet();
+      return RedirectToPage();
+    }
+
+    public IActionResult OnPostDelete(int id) {
+      try{
+        var post = db.Posts.Find(id);
+
+        if(post.State.Equals(PostState.Pending))
+          throw new Exception("Can not delete Pending Post!");
+
+        db.Posts.Remove(post);
+        db.SaveChanges();
+        return RedirectToPage();
+      } 
+      catch(Exception error){
+        ErrorMessage = error.Message;
+        return RedirectToPage(new {error = error.Message});
+      } 
+      
     }
   }
 }
