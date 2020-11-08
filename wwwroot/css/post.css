@@ -3,6 +3,6 @@
 .tag-undo{color:#fff;margin-left:10px}
 .tag-undo:hover{color:#fff}
 
-.ck .ck-content{
-    min-height: 100px;;
+.ck-editor__editable_inline{
+    min-height: 200px;;
 }
