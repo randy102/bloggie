@@ -1,66 +1,71 @@
 ﻿@page
 @model Bloggie.Pages.CreatePostModel
 @{
+    Layout="_MainLayout";
 }
 
-<head>
-    <script src="https://cdn.ckeditor.com/ckeditor5/23.0.0/classic/ckeditor.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-</head>
-@* Thông tin cơ bản về cá nhân đang tạo post *@
-Email: @Model.Author.Email <br>
-Full Name: @Model.Author.FullName <br>
-<form action="" method="post"><br>
-    @* Tiêu đề *@
-    Title: <input asp-for="@Model.title"> <br>
+@section Scripts{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.js"></script>
+    <script src="~/js/taxonomy.min.js"></script>
+}
+@section Styles{
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/post.css">
+}
 
-    @* Danh sách thể loại ( chỉ chọn 1 ) *@
-    <select asp-for="@Model.categoryId" asp-items="@Model.categories">
-    </select> <br>
+<div class="container">
+    <h1 class="display-4">Create Post</h1>
+    <form action="" method="post"><br>
+        @* Tiêu đề *@
+        <input class="form-control" asp-for="@Model.title" placeholder="Post Title"> <br>
 
-    @* Nội dung post *@
-    Content: <br>
-    <textarea id="content" asp-for="@Model.content" cols="30" rows="10"></textarea> <br>
+        @* Danh sách thể loại ( chỉ chọn 1 )*@
+        <div class="row no-gutters">
+            <div class="form-group col-md-2">
+                <select class="form-control" asp-for="@Model.categoryId" asp-items="@Model.categories">
+                </select> <br>
+            </div>
+        </div>
 
-    @* Tags của post *@
-    Tags <span id="showTags"></span>
-    <input id="tags" type="text" asp-for="@Model.tags" hidden>
-    @* Các ô nhập tag *@
-    <div id="div">
-        <input type="text" name="input[]" id="">
-    </div>
+        @* Nội dung post *@
+        <h4 class="font-weight-normal">Post Content</h4> <br>
+        <textarea class="ck-content" id="content" asp-for="@Model.content" cols="30" rows="10"></textarea> <br>
 
-    @* Thêm ô để nhập tag *@
-    <input type="button" value="Add" id="add">
-    @* Lưu tags *@
-    <input type="button" value="Save" id="save"> <br>
+        @* Tags của post *@
+        <h4 class="font-weight-normal">Tags </h4>
 
-    @* Submit form *@
-    <input type="submit" value="Submit">
-</form>
+        @*Input ẩn truyền giá trị cho model*@
+        <input id="tags" type="text" asp-for="@Model.tags" hidden>
+
+        @*Thêm tag*@
+        <ul id="my-tags" class="tag-cloud list-inline row"></ul>
+
+        @* Submit form *@
+         <button class="btn btn-primary m-1" type="submit">Create post</button>
+
+    </form>
+</div>
 <script>
-    /*Khi nhấn button có id là add
-    sẽ tự động chèn thêm ô vào cuối*/
-    $('#add').click(function () {
-        $("#div").last().append('<input type="text" name="input[]" id="">')
-    })
-
-    /*Khi nhấn button có id là save
-    sẽ tự động lưu các tags vào ô input để submit form
-    đồng thời sẽ hiện ra cho người tạo*/
-    $('#save').click(function () {
-        tags=[]; //mảng chứa các tag
-        //Lấy input theo tên
-        $("input[name='input[]']").each(function () {
+    /*Khi nhấn submit form các tags sẽ được lưu vào tags[] và đưa tags[] vào input tags*/
+    $('form').submit(function () {
+        //mảng chứa các tag 
+        tags=[];
+        $("#my-tags li a").each(function () {
             //Thêm vào mảng
-            tags.push($(this).val());
+            tags.push($(this).attr('data-tag-slug'));
         });
+        
         //Lưu vào ô input
         $('#tags').val(tags.join(','));
-        //Hiện thị
-        $('#showTags').html(tags.join(','));
     })
 
+    /*Script tags*/
+    $('#my-tags').taxonomy_jquery();
+    $('#my-second-tags').taxonomy_jquery({
+        createButton:false,
+        hiddenFieldName:'my-second-tags[]'
+    });
+    
 
     //CKEditor
     ClassicEditor
@@ -68,4 +73,5 @@ Full Name: @Model.Author.FullName <br>
         .catch(error => {
         console.error(error);
     });
+
 </script>

@@ -3,9 +3,6 @@
 @{
   Layout="_AdminLayout";
 }
-@section styles{
-  <link href="~/css/tableListPost.css" rel="stylesheet" type="text/css" />
-}
 
 <div class="container">
     <div class="mb-3">
@@ -17,14 +14,14 @@
     </div>
   @* Thông tin cần có *@
  <div class="bloggie-datatable">
-  <table class="table table-fixed" style="width: 880px; text-align: center;">
+  <table class="table">
     <thead>
         <tr>
-          <th>Title</th>
-          <th>Category</th>
-          <th>CreatedAt</th>
-          <th>Status</th>
-          <th>Handling</th>
+          <th><div>Title</div></th>
+          <th><div>Category</div></th>
+          <th><div>CreatedAt</div></th>
+          <th><div>Status</div></th>
+          <th><div>Handling</div></th>
         </tr>
     </thead>
     <tbody>
