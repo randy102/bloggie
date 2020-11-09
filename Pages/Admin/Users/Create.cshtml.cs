@@ -18,16 +18,15 @@ namespace Bloggie.Pages.Admin {
       if (!ModelState.IsValid)
         return Page();
 
-      bool isExist = (db.Users.Where(u => u.Email.Equals(User.Email.ToLower()))).ToList().Any();
+      User.Email = User.Email.ToLower();
+
+      bool isExist = (db.Users.Where(u => u.Email.Equals(User.Email))).ToList().Any();
 
       if (isExist) {
         ErrorMessage = User.Email + " existed";
 
-        //Trả về trang hiện tại( trang tạo tài khoản)
         return Page();
       }
-
-      User.Email = User.Email.ToLower();
 
       User.Password = Hash.GetHashString(User.Password);
 
