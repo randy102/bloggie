@@ -14,33 +14,45 @@
 
 <div class="container">
     <h1 class="display-4">Create Post</h1>
-    <form action="" method="post"><br>
-        @* Tiêu đề *@
-        <input class="form-control" asp-for="@Model.title" placeholder="Post Title"> <br>
 
-        @* Danh sách thể loại ( chỉ chọn 1 )*@
-        <div class="row no-gutters">
-            <div class="form-group col-md-2">
-                <select class="form-control" asp-for="@Model.categoryId" asp-items="@Model.categories">
-                </select> <br>
+    <hr class="my-4">
+
+    <form action="" method="post">
+        <div class="form-group">
+            <label class="h5" for="title-input">Title</label>
+
+            <input asp-for="@Model.title" required type="text" class="form-control" id="title-input">
+
+            <div class="invalid-feedback">
+                Please provide a title.
             </div>
         </div>
 
-        @* Nội dung post *@
-        <h4 class="font-weight-normal">Post Content</h4> <br>
-        <textarea class="ck-content" id="content" asp-for="@Model.content" cols="30" rows="10"></textarea> <br>
+        <div class="form-group">
+            <label class="h5" for="category-select">Category</label>
 
-        @* Tags của post *@
-        <h4 class="font-weight-normal">Tags </h4>
+            <select asp-for="@Model.categoryId" asp-items="@Model.categories" class="custom-select" id="category-select" required></select>
 
-        @*Input ẩn truyền giá trị cho model*@
-        <input id="tags" type="text" asp-for="@Model.tags" hidden>
+            <div class="invalid-feedback">
+                Please select a category.
+            </div>
+        </div>
 
-        @*Thêm tag*@
-        <ul id="my-tags" class="tag-cloud list-inline row"></ul>
+        <div class="form-group">
+            <label class="h5" for="content">Content</label>
 
-        @* Submit form *@
-         <button class="btn btn-primary m-1" type="submit">Create post</button>
+            <textarea class="ck-content" id="content" asp-for="@Model.content" cols="30" rows="10"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="h5">Tags</label>
+
+            <input id="tags" type="text" asp-for="@Model.tags" hidden>
+
+            <ul id="my-tags" class="tag-cloud list-inline row"></ul>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Submit post</button>
 
     </form>
 </div>
