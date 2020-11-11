@@ -6,9 +6,8 @@
 }
 
 @section Scripts {
-  @* <script src="~/js/Validation.js"></script> *@
+    <script src="~/js/Validation.js"></script>
 }
-
 
 <div class="container">
     <div class="display-4">
@@ -24,8 +23,9 @@
         <input required type="text" asp-for="newName" class="form-control">
 
         <div class="invalid-feedback">
-          <span asp-validation-for="newName"></span>
+            Please provide a name.
         </div>
+
       </div>
 
       @if (@Model.ErrorMessage != null) {
