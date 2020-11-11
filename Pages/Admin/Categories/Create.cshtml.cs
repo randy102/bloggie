@@ -14,7 +14,6 @@ namespace Bloggie.Pages {
     public CreateCategoryModel(BloggieContext db) => this.db = db;
 
     [BindProperty]
-    [Required(ErrorMessage = "Category name is required.")]
     public string newName { get; set; }
 
     public string ErrorMessage { get; set; }
