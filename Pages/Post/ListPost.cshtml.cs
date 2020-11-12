@@ -23,11 +23,9 @@ namespace Bloggie.Pages {
     [BindProperty(Name = "error", SupportsGet = true)]
     public string ErrorMessage { get; set; }
 
-    //Tài khoản đang đăng nhập
+ 
     public User getUser() {
-      //Lấy email hiện tại
       var email = HttpContext.User.FindFirst(ClaimTypes.Email).Value;
-      //dùng email để truy vấn csdl
       return db.Users.Where(u => u.Email.Equals(email)).FirstOrDefault();
     }
     public void OnGet() {
@@ -35,30 +33,26 @@ namespace Bloggie.Pages {
       Posts = Author.Posts;
     }
     public IActionResult OnPost() {
-      //Bài post cần phải thay đổi trạng thái
       var post = db.Posts.Find(postId);
-      //Biến này dùng để lưu trữ trạng thái tiếp theo của Post( Post State)
-      var state = -1;
-      //  Draft thành Pending
-      //   Published thành Unpublished 
-      if (post.State == Bloggie.Models.PostState.Draft || post.State == Bloggie.Models.PostState.Published) {
-        //Trạng thái tăng 1
-        state = (int)post.State + 1;
+
+      switch(post.State){
+        case PostState.Draft:
+          post.State = PostState.Pending;
+          break;
+        case PostState.Pending:
+          post.State = PostState.Draft;
+          break;
+        case PostState.Unpublished:
+          post.State = PostState.Published;
+          break;
+        case PostState.Published:
+          post.State = PostState.Unpublished;
+          break;
       }
-      //  Pending thành Draft
-      //   Rejected thành Pending
-      //   Unpublished thành Published  
-      else {
-        //Trạng thái giảm 1
-        state = (int)post.State - 1;
-      }
-      //Thay đổi trạng thái của bài post
-      post.State = (PostState)state;
-      //Cập nhật thay đổi
+
       db.Update(post);
-      //Lưu thay đổi
       db.SaveChanges();
-      //Chuyển đang trang list Post
+
       return RedirectToPage();
     }
 
