@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
 
-namespace Bloggie.Models {
+namespace Cinemo.Models {
   public class User {
     public int Id { get; set; }
 

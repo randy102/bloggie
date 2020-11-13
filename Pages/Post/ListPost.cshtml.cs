@@ -4,16 +4,16 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Bloggie.Data;
-using Bloggie.Models;
+using Cinemo.Data;
+using Cinemo.Models;
 using System.Security.Claims;
 
-namespace Bloggie.Pages {
+namespace Cinemo.Pages {
   public class ListPostModel : PageModel {
-    private BloggieContext db;
-    public ListPostModel(BloggieContext db) => this.db = db;
+    private CinemoContext db;
+    public ListPostModel(CinemoContext db) => this.db = db;
     //Danh sách các bài post của tài khoản hiện tại
-    public List<Bloggie.Models.Post> Posts { get; set; }
+    public List<Cinemo.Models.Post> Posts { get; set; }
     //Tài khoản hiện tại
     public User Author { get; set; }
     //Id post sẽ được thay đổi trạng thái

@@ -1,16 +1,16 @@
 using System.Collections.Generic;
 using System.Linq;
-using Bloggie.Data;
-using Bloggie.Models;
+using Cinemo.Data;
+using Cinemo.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-namespace Bloggie.Pages.Admin {
+namespace Cinemo.Pages.Admin {
   public class ListUserModel : PageModel {
-    private BloggieContext db;
+    private CinemoContext db;
 
-    public ListUserModel(BloggieContext db) => this.db = db;
+    public ListUserModel(CinemoContext db) => this.db = db;
 
-    public List<Bloggie.Models.User> Users { get; set; }
+    public List<Cinemo.Models.User> Users { get; set; }
 
     public void OnGet() {
       Users = db.Users.Where(u => u.Role != UserRole.Admin).ToList();

@@ -4,18 +4,18 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Bloggie.Data;
+using Cinemo.Data;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
-using Bloggie.Models;
+using Cinemo.Models;
 
-namespace Bloggie.Pages {
+namespace Cinemo.Pages {
   public class ChangeUserNameModel : PageModel {
-    private BloggieContext db;
+    private CinemoContext db;
 
     public User CurrentUser { get; set; }
 
-    public ChangeUserNameModel(BloggieContext db) => this.db = db;
+    public ChangeUserNameModel(CinemoContext db) => this.db = db;
 
     [BindProperty]
     public string FullName { get; set; }

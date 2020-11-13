@@ -1,5 +1,5 @@
 ﻿@page
-@model Bloggie.Pages.ListPostModel
+@model Cinemo.Pages.ListPostModel
 @{
   Layout = "_MainLayout";
 }
@@ -35,7 +35,7 @@
   }
 
   @* Thông tin cần có *@
-  <div class="bloggie-datatable">
+  <div class="cinemo-datatable">
     <table class="table">
       <thead>
         <tr>
@@ -72,7 +72,7 @@
             <td>
               @* Draft thành Pending
                 Published thành Unpublished *@
-              @if (post.State == Bloggie.Models.PostState.Draft || post.State == Bloggie.Models.PostState.Published)
+              @if (post.State == Cinemo.Models.PostState.Draft || post.State == Cinemo.Models.PostState.Published)
               {
                 //Trạng thái tăng 1
                 state = (int)@post.State + 1;
@@ -89,7 +89,7 @@
                 @* id dùng để xác định post *@
                 <input asp-for="postId" value="@post.Id" hidden>
                 @* Tên trạng thái tiếp theo *@
-                <button class="btn btn-primary btn-rounded" type="submit">@((Bloggie.Models.PostState)state)</button>
+                <button class="btn btn-primary btn-rounded" type="submit">@((Cinemo.Models.PostState)state)</button>
               </form>
             </td>
             <td>

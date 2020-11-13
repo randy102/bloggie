@@ -7,17 +7,17 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Bloggie.Utils;
+using Cinemo.Utils;
 using System.ComponentModel.DataAnnotations;
 using System.Security.Claims;
-using Bloggie.Data;
+using Cinemo.Data;
 using Microsoft.AspNetCore.Http;
 
-namespace Bloggie.Pages {
+namespace Cinemo.Pages {
   public class LoginModel : PageModel {
-    private readonly BloggieContext db;
+    private readonly CinemoContext db;
 
-    public LoginModel(BloggieContext db) => this.db = db;
+    public LoginModel(CinemoContext db) => this.db = db;
 
     [BindProperty, DataType(DataType.EmailAddress)]
     [Required(ErrorMessage = "Please enter your email.")]

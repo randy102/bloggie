@@ -12,7 +12,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>@ViewData["Title"] - Bloggie</title>
+  <title>@ViewData["Title"] - Cinemo</title>
   <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-tagsinput/1.3.6/jquery.tagsinput.min.css">
@@ -41,14 +41,14 @@
 
   <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom box-shadow">
     <div class="container">
-      <a class="navbar-brand" href="/Index">Bloggie</a>
+      <a class="navbar-brand" href="/Index">Cinemo</a>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#bloggie-navbar"
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#cinemo-navbar"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <div id="bloggie-navbar" class="collapse navbar-collapse">
+      <div id="cinemo-navbar" class="collapse navbar-collapse">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item">
             <a class="nav-link text-dark" href="/Index">Home</a>
@@ -67,22 +67,15 @@
               <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
                 @(sessionFullName ?? Context.User.Identity.Name)
               </a>
+              
               <div class="dropdown-menu dropdown-menu-right">
                 <a class="dropdown-item @(pageUrl == "/Profile" ? "active" : "")" href="/Profile">
                   <i class="fa fa-user fa-fw mr-2"></i> Profile
                 </a>
 
-                <a class="dropdown-item @(pageUrl == "/Post/ListPost" ? "active" : "")" href="/Post/ListPost">
-                  <i class="fa fa-list fa-fw mr-2"></i> Your posts
-                </a>
-
                 @if (User.IsInRole("Admin")) {
                   <a class="dropdown-item @(pageUrl == "/Admin/Users" ? "active" : "")" href="/Admin/Users">
                     <i class="fa fa-cog fa-fw mr-2"></i> Admin
-                  </a>
-                } else if (User.IsInRole("Moderator")) {
-                  <a class="dropdown-item @(pageUrl == "" ? "active" : "")">
-                    <i class="fa fa-cog fa-fw mr-2"></i> Approve posts
                   </a>
                 }
 
@@ -103,7 +96,7 @@
 
   <footer class="container-fluid flex-grow-0 flex-shrink-1 border-top text-muted box-shadow bg-white py-3">
     <div class="container">
-      &copy; 2020 - Bloggie - <a href="/Privacy">Privacy</a>
+      &copy; 2020 - Cinemo - <a href="/Privacy">Privacy</a>
     </div>
   </footer>
   

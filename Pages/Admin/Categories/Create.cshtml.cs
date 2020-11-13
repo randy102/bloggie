@@ -1,17 +1,17 @@
 using System;
 using System.Linq;
-using Bloggie.Data;
-using Bloggie.Models;
+using Cinemo.Data;
+using Cinemo.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using bloggie.Utils;
+using Cinemo.Utils;
 using System.ComponentModel.DataAnnotations;
 
-namespace Bloggie.Pages {
+namespace Cinemo.Pages {
   public class CreateCategoryModel : PageModel {
-    private BloggieContext db;
+    private CinemoContext db;
 
-    public CreateCategoryModel(BloggieContext db) => this.db = db;
+    public CreateCategoryModel(CinemoContext db) => this.db = db;
 
     [BindProperty]
     public string newName { get; set; }

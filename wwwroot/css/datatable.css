@@ -1,13 +1,13 @@
-.bloggie-datatable {
+.cinemo-datatable {
   overflow-y: scroll;
   max-height: 500px;
 }
 
-.bloggie-datatable td {
+.cinemo-datatable td {
   vertical-align: middle;
 }
 
-.bloggie-datatable thead th {
+.cinemo-datatable thead th {
   position: sticky;
   top: 0;
   background-color: white;
@@ -16,13 +16,13 @@
   border: none;
 }
 
-.bloggie-datatable th div {
+.cinemo-datatable th div {
   padding: 0.75rem;
   border-style: solid;
   border-color: #dee2e6;
   border-width: 1px 0 2px 0;
 }
 
-.bloggie-datatable tbody tr:first-child td {
+.cinemo-datatable tbody tr:first-child td {
   border-top: none;
 }

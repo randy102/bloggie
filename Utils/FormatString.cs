@@ -1,4 +1,4 @@
-namespace bloggie.Utils {
+namespace Cinemo.Utils {
   public class FormatString {
     public static string Trim_MultiSpaces_Title(string str) {
       //Xoá các khoảng trắng đầu cuối

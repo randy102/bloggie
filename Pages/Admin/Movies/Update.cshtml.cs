@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Bloggie.Pages
+namespace Cinemo.Pages
 {
-    public class ListModel : PageModel
+    public class UpdateModel : PageModel
     {
         public void OnGet()
         {

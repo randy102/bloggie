@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace Cinemo.Pages
 {
-    public class UpdatePostModel : PageModel
+    public class CreateModel : PageModel
     {
         public void OnGet()
         {

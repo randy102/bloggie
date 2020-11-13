@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Bloggie.Models {
+namespace Cinemo.Models {
   public class Category {
     public int Id { get; set; }
     public string Name {get; set; }

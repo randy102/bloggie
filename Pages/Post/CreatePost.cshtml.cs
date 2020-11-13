@@ -2,18 +2,18 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Bloggie.Data;
+using Cinemo.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.Security.Claims;
-using Bloggie.Models;
+using Cinemo.Models;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Bloggie.Pages {
+namespace Cinemo.Pages {
   public class CreatePostModel : PageModel {
 
-    private BloggieContext db;
-    public CreatePostModel(BloggieContext db) => this.db = db;
+    private CinemoContext db;
+    public CreatePostModel(CinemoContext db) => this.db = db;
     //Tài khoản đăng đăng nhập
     public User Author { get; set; }
     [BindProperty]

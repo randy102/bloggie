@@ -1,9 +1,9 @@
-using Bloggie.Models;
+using Cinemo.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bloggie.Data
+namespace Cinemo.Data
 {
-  public class BloggieContext : DbContext
+  public class CinemoContext : DbContext
   {
     public DbSet<User> Users { get; set; }
     public DbSet<Category> Categories { get; set; }
@@ -11,7 +11,7 @@ namespace Bloggie.Data
     
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-      optionsBuilder.UseSqlite(@"Data source=Bloggie.db");
+      optionsBuilder.UseSqlite(@"Data source=Cinemo.db");
       optionsBuilder.UseLazyLoadingProxies();
     }
 

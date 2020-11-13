@@ -12,9 +12,9 @@ using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authentication.Cookies;
-using Bloggie.Data;
+using Cinemo.Data;
 
-namespace Bloggie
+namespace Cinemo
 {
   public class Startup
   {
@@ -44,7 +44,7 @@ namespace Bloggie
         options.Conventions.AuthorizeFolder("/admin");
       }).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
 
-      services.AddDbContext<BloggieContext>();
+      services.AddDbContext<CinemoContext>();
 
       services.AddSession(options => {
         options.IdleTimeout = TimeSpan.FromMinutes(30);

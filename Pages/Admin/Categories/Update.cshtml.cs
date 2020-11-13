@@ -2,17 +2,17 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using bloggie.Utils;
-using Bloggie.Data;
-using Bloggie.Models;
+using cinemo.Utils;
+using Cinemo.Data;
+using Cinemo.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Bloggie.Pages {
+namespace Cinemo.Pages {
   public class UpdateCategoryModel : PageModel {
-    private BloggieContext db;
+    private CinemoContext db;
 
-    public UpdateCategoryModel(BloggieContext db) => this.db = db;
+    public UpdateCategoryModel(CinemoContext db) => this.db = db;
 
     public string ErrorMessage { get; set; }
 

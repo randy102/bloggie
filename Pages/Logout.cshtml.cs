@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace Bloggie.Pages {
+namespace Cinemo.Pages {
   public class LogoutModel : PageModel {
     public async Task<IActionResult> OnGet() {
       if (!HttpContext.User.Identity.IsAuthenticated)

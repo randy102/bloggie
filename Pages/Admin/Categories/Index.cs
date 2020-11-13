@@ -4,13 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Bloggie.Models;
-using Bloggie.Data;
+using Cinemo.Models;
+using Cinemo.Data;
 
-namespace Bloggie.Pages {
+namespace Cinemo.Pages {
   public class ListCategoryModel : PageModel {
-    private BloggieContext db;
-    public ListCategoryModel(BloggieContext db) => this.db = db;
+    private CinemoContext db;
+    public ListCategoryModel(CinemoContext db) => this.db = db;
 
     public List<Category> Categories { get; set; }
 

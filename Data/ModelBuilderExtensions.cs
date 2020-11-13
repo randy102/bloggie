@@ -1,9 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 
-using Bloggie.Utils;
-using Bloggie.Models;
+using Cinemo.Utils;
+using Cinemo.Models;
 
-namespace Bloggie.Data
+namespace Cinemo.Data
 {
   public static class ModelBuilderExtensions
   {

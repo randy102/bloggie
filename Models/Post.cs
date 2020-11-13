@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System;
 
-namespace Bloggie.Models {
+namespace Cinemo.Models {
   public class Post {
     public int Id { get; set; }
 

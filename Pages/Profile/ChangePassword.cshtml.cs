@@ -4,13 +4,13 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Bloggie.Data;
+using Cinemo.Data;
 using System.Security.Claims;
 
-namespace Bloggie.Pages {
+namespace Cinemo.Pages {
   public class ChangePasswordModel : PageModel {
-    private BloggieContext db;
-    public ChangePasswordModel(BloggieContext db) => this.db = db;
+    private CinemoContext db;
+    public ChangePasswordModel(CinemoContext db) => this.db = db;
 
     [BindProperty]
     public string Password { get; set; }

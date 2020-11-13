@@ -3,18 +3,18 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Bloggie.Utils;
+using Cinemo.Utils;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
-using Bloggie.Data;
-using Bloggie.Models;
+using Cinemo.Data;
+using Cinemo.Models;
 
-namespace Bloggie.Pages {
+namespace Cinemo.Pages {
   public class RegisterModel : PageModel {
-    private readonly BloggieContext db;
+    private readonly CinemoContext db;
 
-    public RegisterModel(BloggieContext db) => this.db = db;
+    public RegisterModel(CinemoContext db) => this.db = db;
 
     [BindProperty, DataType(DataType.EmailAddress)]
     [Required(ErrorMessage = "Please enter your email.")]

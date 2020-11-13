@@ -1,5 +1,5 @@
 @page
-@model Bloggie.Pages.Admin.CreateUserModel
+@model Cinemo.Pages.Admin.CreateUserModel
 
 @{
   Layout = "_AdminLayout";
@@ -46,7 +46,7 @@
       <label>Role</label>
 
       <select asp-for="@Model.User.Role" class="selectpicker show-tick d-block" data-style="custom-select">
-        @foreach (Bloggie.Models.UserRole role in Enum.GetValues(typeof(Bloggie.Models.UserRole))) {
+        @foreach (Cinemo.Models.UserRole role in Enum.GetValues(typeof(Cinemo.Models.UserRole))) {
           if (role == Models.UserRole.Admin)
             continue;
 

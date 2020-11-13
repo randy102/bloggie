@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Bloggie.Data.Migrations
+namespace Cinemo.Data.Migrations
 {
     public partial class CreateDatabase : Migration
     {

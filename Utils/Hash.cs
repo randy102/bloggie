@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace Bloggie.Utils
+namespace Cinemo.Utils
 {
 
   public class Hash

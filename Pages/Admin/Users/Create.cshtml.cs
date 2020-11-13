@@ -1,16 +1,16 @@
 using System.Linq;
-using Bloggie.Utils;
-using Bloggie.Data;
+using Cinemo.Utils;
+using Cinemo.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-namespace Bloggie.Pages.Admin {
+namespace Cinemo.Pages.Admin {
   public class CreateUserModel : PageModel {
-    private BloggieContext db;
+    private CinemoContext db;
 
-    public CreateUserModel(BloggieContext db) => this.db = db;
+    public CreateUserModel(CinemoContext db) => this.db = db;
 
     [BindProperty]
-    public new Bloggie.Models.User User { get; set; } = null;
+    public new Cinemo.Models.User User { get; set; } = null;
 
     public string ErrorMessage { get; set; }
 
